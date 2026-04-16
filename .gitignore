@@ -1,0 +1,13 @@
+.env
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.uv/
+uv.lock
+*.egg-info/
+dist/
+build/
+.DS_Store
+campaigns/assets/videos/
+campaigns/assets/images/

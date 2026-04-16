@@ -1,0 +1,203 @@
+# =====================================================
+# ARCHIVO DE CAMPAÑA — Meta Ads
+# Generado por el agente de copys a partir de BRIEF_TEMPLATE.md
+# =====================================================
+
+campaign:
+  name: "Lanzamiento Verano 2024"
+  objective: OUTCOME_SALES           # OUTCOME_TRAFFIC | OUTCOME_LEADS | OUTCOME_SALES | OUTCOME_AWARENESS | OUTCOME_ENGAGEMENT
+  daily_budget: 5000                 # Centavos (5000 = $50.00 USD / día)
+  lifetime_budget: null              # Usar solo si NO usas daily_budget
+  status: PAUSED                     # Siempre PAUSED para revisión antes de activar
+  special_ad_categories: []          # Dejar vacío si no es crédito, empleo o vivienda
+
+ad_set:
+  name: "Mujeres 25-40 — MX intereses fitness"
+  optimization_goal: CONVERSIONS     # REACH | LINK_CLICKS | CONVERSIONS | LANDING_PAGE_VIEWS
+  billing_event: IMPRESSIONS
+  daily_budget: 5000
+  bid_strategy: LOWEST_COST_WITHOUT_CAP
+  start_time: "2024-07-01T00:00:00-0600"
+  end_time: null                     # null = sin fecha de fin
+  targeting:
+    geo_locations:
+      countries: ["MX"]
+      # cities:                      # Opcional: ciudades específicas
+      #   - key: "2673660"
+      #     name: "Ciudad de México"
+    age_min: 25
+    age_max: 45
+    genders: [1, 2]                  # 1=hombres 2=mujeres [] o [1,2]=todos
+    interests:
+      - id: "6003107902433"
+        name: "Fitness and wellness"
+      - id: "6003348604581"
+        name: "Health"
+    behaviors: []                    # Opcional
+    custom_audiences: []             # IDs de audiencias personalizadas
+
+ads:
+  # ─── VIDEOS ────────────────────────────────────────────
+
+  - name: "V1 — Hero producto — urgencia"
+    type: video
+    file: assets/videos/video1.mp4
+    thumbnail: assets/thumbnails/thumb1.jpg
+    headline: "Transforma tu rutina hoy"
+    body: "El suplemento #1 en México ya está aquí. Envío gratis en tu primer pedido. ¡Oferta solo esta semana!"
+    description: "Envío gratis • Stock limitado"
+    call_to_action: SHOP_NOW
+    link: "https://tutienda.com/producto"
+    tone: URGENCY
+    notes: "Video mostrando el producto en uso, tono energético"
+
+  - name: "V2 — Testimonial cliente real"
+    type: video
+    file: assets/videos/video2.mp4
+    thumbnail: assets/thumbnails/thumb2.jpg
+    headline: "+5,000 clientes no pueden estar equivocados"
+    body: "María perdió 8 kg en 3 meses sin dejar de comer lo que le gusta. Descubre su historia."
+    description: "Historia real, resultados reales"
+    call_to_action: LEARN_MORE
+    link: "https://tutienda.com/testimoniales"
+    tone: SOCIAL_PROOF
+    notes: "Video testimonial, debe sentirse auténtico"
+
+  - name: "V3 — Beneficio transformación"
+    type: video
+    file: assets/videos/video3.mp4
+    thumbnail: assets/thumbnails/thumb3.jpg
+    headline: "De agotada a imparable en 30 días"
+    body: "¿Qué pasaría si tuvieras el doble de energía cada mañana? Nuestro programa lo hace posible."
+    description: "Garantía de 30 días"
+    call_to_action: GET_OFFER
+    link: "https://tutienda.com/oferta"
+    tone: BENEFIT
+    notes: "Before/after visual, música motivadora"
+
+  - name: "V4 — Curiosidad / problema"
+    type: video
+    file: assets/videos/video4.mp4
+    thumbnail: assets/thumbnails/thumb4.jpg
+    headline: "¿Por qué no bajas de peso?"
+    body: "No es tu disciplina. Es tu metabolismo. Descubre la razón real y cómo resolverlo en 2 semanas."
+    description: "Respuesta que cambia todo"
+    call_to_action: LEARN_MORE
+    link: "https://tutienda.com/blog/metabolismo"
+    tone: CURIOSITY
+    notes: "Video educativo corto, 15-30 segundos"
+
+  - name: "V5 — CTA directo precio"
+    type: video
+    file: assets/videos/video5.mp4
+    thumbnail: assets/thumbnails/thumb5.jpg
+    headline: "Hoy solo: 40% de descuento"
+    body: "Lleva el kit completo por $599 MXN (antes $999). Envío express incluido. Solo 48 horas."
+    description: "Solo por hoy • Envío gratis"
+    call_to_action: SHOP_NOW
+    link: "https://tutienda.com/oferta-especial"
+    tone: URGENCY
+    notes: "Video animado con precio prominente"
+
+  - name: "V6 — Comunidad social proof"
+    type: video
+    file: assets/videos/video6.mp4
+    thumbnail: assets/thumbnails/thumb6.jpg
+    headline: "Únete a 50,000 personas que ya cambiaron"
+    body: "La comunidad más grande de wellness en México te espera. Resultados reales, sin dietas extremas."
+    description: "Comunidad activa • Sin compromisos"
+    call_to_action: SIGN_UP
+    link: "https://tutienda.com/comunidad"
+    tone: SOCIAL_PROOF
+    notes: "Collage de clientes felices"
+
+  - name: "V7 — Reencuadre objeción"
+    type: video
+    file: assets/videos/video7.mp4
+    thumbnail: assets/thumbnails/thumb7.jpg
+    headline: "No es caro, es una inversión"
+    body: "Calcúlalo: menos de $20 MXN al día por sentirte mejor, dormir bien y tener más energía. ¿Vale la pena?"
+    description: "Menos de $20/día"
+    call_to_action: GET_OFFER
+    link: "https://tutienda.com/precio"
+    tone: BENEFIT
+    notes: "Video con desglose visual del precio"
+
+  # ─── IMÁGENES ───────────────────────────────────────────
+
+  - name: "I1 — Producto lifestyle"
+    type: image
+    file: assets/images/foto1.jpg
+    headline: "El secreto de tu mejor versión"
+    body: "Miles de personas en México ya lo usan cada mañana. Tú también puedes empezar hoy."
+    description: "Envío gratis"
+    call_to_action: SHOP_NOW
+    link: "https://tutienda.com/producto"
+    tone: BENEFIT
+    notes: "Foto limpia del producto en contexto lifestyle"
+
+  - name: "I2 — Resultado antes/después"
+    type: image
+    file: assets/images/foto2.jpg
+    headline: "Resultados en 4 semanas"
+    body: "Sin cirugía, sin dietas extremas. Solo el método que sí funciona. ¡Ver para creer!"
+    description: "Garantía o te devolvemos tu dinero"
+    call_to_action: LEARN_MORE
+    link: "https://tutienda.com/resultados"
+    tone: SOCIAL_PROOF
+    notes: "Imagen comparativa con consentimiento del cliente"
+
+  - name: "I3 — Oferta flash"
+    type: image
+    file: assets/images/foto3.jpg
+    headline: "Solo hoy: Kit completo $599"
+    body: "Precio especial por lanzamiento. Incluye envío express. Quedan pocas unidades."
+    description: "Hasta agotar existencias"
+    call_to_action: SHOP_NOW
+    link: "https://tutienda.com/kit"
+    tone: URGENCY
+    notes: "Diseño con precio grande y countdown visual"
+
+  - name: "I4 — Pregunta problema"
+    type: image
+    file: assets/images/foto4.jpg
+    headline: "¿Cansada de no ver resultados?"
+    body: "Hay una razón por la que nada ha funcionado. Nosotros la resolvemos. Primer mes con garantía."
+    description: "Garantía de 30 días"
+    call_to_action: LEARN_MORE
+    link: "https://tutienda.com/como-funciona"
+    tone: CURIOSITY
+    notes: "Imagen de mujer frustrada transformándose"
+
+  - name: "I5 — Ingredientes / credibilidad"
+    type: image
+    file: assets/images/foto5.jpg
+    headline: "100% natural, 100% efectivo"
+    body: "Fórmula avalada por nutriólogos. Sin químicos, sin efectos secundarios. Tu cuerpo lo agradece."
+    description: "Avalado por especialistas"
+    call_to_action: LEARN_MORE
+    link: "https://tutienda.com/ingredientes"
+    tone: BENEFIT
+    notes: "Infografía de ingredientes, look científico pero accesible"
+
+  - name: "I6 — Número social proof"
+    type: image
+    file: assets/images/foto6.jpg
+    headline: "50,000 personas no se equivocan"
+    body: "La marca de wellness más recomendada en México. Únete y siente la diferencia desde el día 1."
+    description: "⭐⭐⭐⭐⭐ 4.9 / 5"
+    call_to_action: SHOP_NOW
+    link: "https://tutienda.com"
+    tone: SOCIAL_PROOF
+    notes: "Estrellas y número prominente, testimonios breves"
+
+  - name: "I7 — CTA registro / lead"
+    type: image
+    file: assets/images/foto7.jpg
+    headline: "Guía gratis: Pierde 5 kg en 30 días"
+    body: "Descarga nuestra guía gratuita y empieza hoy. Sin spam, solo resultados. +10,000 descargas."
+    description: "100% gratis • Sin compromisos"
+    call_to_action: DOWNLOAD
+    link: "https://tutienda.com/guia-gratis"
+    tone: URGENCY
+    notes: "Imagen del e-book o guía, énfasis en GRATIS"

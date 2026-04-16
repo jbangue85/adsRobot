@@ -1,0 +1,8 @@
+services:
+  meta-ads-mcp:
+    build: .
+    image: meta-ads-mcp
+    env_file:
+      - .env
+    stdin_open: true
+    tty: false
