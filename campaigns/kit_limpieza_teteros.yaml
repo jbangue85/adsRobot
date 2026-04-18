@@ -6,9 +6,9 @@
 campaign:
   name: "Kit Limpieza Biberones — [fecha]"       # ← Cambia [fecha] por ej: "17 ABR"
   objective: OUTCOME_SALES
-  daily_budget: 60000                             # COP (60000 = $60,000 COP / día)
+  daily_budget: 60000                             # COP ($60.000 COP / día)
   lifetime_budget: null
-  status: PAUSED                                  # Siempre PAUSED — actívala tú manualmente
+  status: PAUSED                                  # Siempre PAUSED — activar manualmente
   special_ad_categories: []
 
 ad_set:
@@ -54,14 +54,6 @@ ads:
     description: "Limpieza profunda + luz UV"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
-    tone: BENEFIT
-    notes: "Ángulo: bacterias ocultas | Framework: PAS | Tono: Mamá que cuida"
-    # --- Versión B (Aspiracional) ---
-    # body: "✨ Biberones perfectamente limpios, cada vez. El kit eléctrico llega a todos los rincones y la luz UV sanitiza mientras carga."
-    # headline: "Limpia profundo, sanitiza con UV"
-    # --- Versión C (Social Proof) ---
-    # body: "🌟 Miles de mamás ya cambiaron esponjas por el kit eléctrico: cerdas de silicona + luz UV incluida. Limpieza real, no aparente."
-    # headline: "El kit que toda mamá necesita"
 
   - name: "Video 02 — Consecuencia real"
     type: video
@@ -69,17 +61,9 @@ ads:
     thumbnail: assets/thumbnails/thumb2.jpg
     headline: "La limpieza que tu bebé merece"
     body: "😰 La diarrea en bebés muchas veces empieza en el biberón mal lavado. El kit eléctrico limpia profundo donde el cepillo no llega."
-    description: "Silicona duradera + Type-C"
+    description: "Silicona duradera + carga Type-C"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
-    tone: BENEFIT
-    notes: "Ángulo: consecuencia real | Framework: BAB | Tono: Par que ya lo vivió"
-    # --- Versión B (Aspiracional) ---
-    # body: "💪 Antes me conformaba con lavar a mano. Ahora sé que las cerdas de silicona llegan a cada rincón y el Type-C mantiene todo listo."
-    # headline: "Carga Type-C, siempre listo"
-    # --- Versión C (Social Proof) ---
-    # body: "✅ La limpieza deficiente es causa #1 de diarrea en bebés. Kit eléctrico con silicona de larga duración: limpia donde no ves."
-    # headline: "Silicona que llega a todo rincón"
 
   - name: "Video 04 — Versatilidad total"
     type: video
@@ -87,14 +71,6 @@ ads:
     thumbnail: assets/thumbnails/thumb4.jpg
     headline: "Limpia biberones, chupos y más"
     body: "🍼 No solo biberones. Limpia chupos, pitillos y más — resistente al agua hirviendo y con cabezal rotatorio de 2 velocidades."
-    description: "Waterproof + silicona líquida"
+    description: "Impermeable + silicona líquida"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
-    tone: BENEFIT
-    notes: "Ángulo: versatilidad total | Framework: FAB | Tono: Experta tranquila"
-    # --- Versión B (Aspiracional) ---
-    # body: "✨ Un kit que se adapta a todo. Silicona líquida, waterproof, apto para agua hirviendo. Limpieza profunda en biberones, chupos y pitillos."
-    # headline: "Waterproof y apto agua hirviendo"
-    # --- Versión C (Social Proof) ---
-    # body: "🌟 El kit eléctrico que más recomiendan las mamás: limpia biberones, chupos y pitillos. Resistente al agua hirviendo, sin complicaciones."
-    # headline: "2 velocidades, cero esfuerzo"
