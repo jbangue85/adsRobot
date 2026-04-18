@@ -166,7 +166,7 @@ Esperar respuesta del usuario antes de continuar con el siguiente asset.
 
 Sin preguntar, guardar el copy directamente:
 - Si el usuario indicó un YAML existente → actualizarlo.
-- Si no hay YAML → crear `campaigns/[nombre-producto-slug].yaml`.
+- Si no hay YAML → crear `campaigns/[nombre-producto-slug]/campana.yaml` y las carpetas `assets/videos/` y `assets/images/` dentro.
 
 Reglas al guardar:
 - Usar **Versión A** (empática) como valores por defecto en `headline`, `body`, `description`, `call_to_action`, `link`.
@@ -181,9 +181,9 @@ Al guardar mostrar:
 ✅ Archivo guardado: campaigns/[nombre].yaml
 
 Próximos pasos:
-1. Coloca tus assets en campaigns/assets/videos/ o campaigns/assets/images/
-2. Valida: python scripts/validate_campaign.py campaigns/[nombre].yaml
-3. Lanza: /launch-campaign campaigns/[nombre].yaml
+1. Coloca tus assets en campaigns/[nombre-producto-slug]/assets/videos/ o assets/images/
+2. Valida: python scripts/validate_campaign.py campaigns/[nombre-producto-slug]/campana.yaml
+3. Lanza: /launch-campaign campaigns/[nombre-producto-slug]/campana.yaml
 ```
 
 ---
