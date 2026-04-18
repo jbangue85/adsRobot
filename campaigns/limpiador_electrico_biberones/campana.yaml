@@ -4,7 +4,7 @@
 # =====================================================
 
 campaign:
-  name: "Limpiador Eléctrico Biberones — [fecha]"  # ← Cambia [fecha] por ej: "17 ABR"
+  name: "Limpiador Eléctrico Biberones — 19 ABR"
   objective: OUTCOME_SALES
   daily_budget: 60000                               # COP ($60.000 COP / día)
   lifetime_budget: null
@@ -12,12 +12,12 @@ campaign:
   special_ad_categories: []
 
 ad_set:
-  name: "[fecha] ADSET 01"                          # ← Cambia [fecha] por ej: "17 ABR"
+  name: "19 ABR ADSET 01"
   optimization_goal: OFFSITE_CONVERSIONS
   billing_event: IMPRESSIONS
   daily_budget: 60000
   bid_strategy: LOWEST_COST_WITHOUT_CAP
-  start_time: "2026-04-17T00:00:00-0500"           # ← Cambia por la fecha de inicio
+  start_time: "2026-04-19T00:00:00-0500"
   end_time: null
   targeting:
     geo_locations:
