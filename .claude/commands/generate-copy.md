@@ -154,19 +154,18 @@ Esperar respuesta del usuario antes de continuar con el siguiente asset.
 - Si describe varios assets → **Modo Batch**
 - Si describe un solo asset → **Modo Individual**
 
-### Al finalizar, ofrecer guardar como YAML
+### Al finalizar, guardar automáticamente el YAML
 
-Después del resumen final, preguntar:
-```
-¿Quieres que guarde el copy en el archivo de campaña?
-A) Crear nuevo: campaigns/[nombre-sugerido].yaml
-B) Actualizar existente: campaigns/[archivo-actual].yaml
-C) Solo mostrar el copy (no guardar)
-```
+Sin preguntar, guardar el copy directamente:
+- Si el usuario indicó un YAML existente → actualizarlo.
+- Si no hay YAML → crear `campaigns/[nombre-producto-slug].yaml`.
 
-Si elige A o B: generar/actualizar el YAML.
+Reglas al guardar:
 - Usar **Versión A** (empática) como valores por defecto en `headline`, `body`, `description`, `call_to_action`, `link`.
 - Agregar las versiones B y C como comentarios YAML para A/B testing.
+- El `headline` debe ser el Título #1 (máx 40 chars).
+- El `body` debe ser la Versión A del texto principal (máx 125 chars).
+- El `description` debe ser el campo DESCRIPCIÓN (máx 30 chars).
 
 Al guardar mostrar:
 ```
@@ -182,6 +181,11 @@ Próximos pasos:
 
 ## INICIO
 
-Saluda brevemente y pregunta:
-- ¿Cuántos assets tiene? (un video, varias imágenes, mix de videos e imágenes)
+Saluda brevemente y pregunta solo:
+- ¿Qué producto es y qué hace?
+- ¿Cuál es el objetivo del anuncio? (compra, visita tienda, etc.)
+- ¿Cuál es la URL de destino?
+- ¿Cuántos assets tiene y de qué tipo? (videos, imágenes, o mix)
 - ¿Tiene un YAML de campaña existente para completar?
+
+**NO preguntar** propuesta de valor ni audiencia — deducirlas del producto.
