@@ -94,8 +94,8 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
 
         if isinstance(ad.get("headline"), str) and len(ad["headline"]) > 40:
             result.warnings.append(f"ads[{index}].headline exceeds 40 characters")
-        if isinstance(ad.get("body"), str) and len(ad["body"]) > 125:
-            result.warnings.append(f"ads[{index}].body exceeds 125 characters")
+        if isinstance(ad.get("body"), str) and len(ad["body"]) > 4096:
+            result.warnings.append(f"ads[{index}].body exceeds 4096 characters")
 
         result.ads.append(
             {

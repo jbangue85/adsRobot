@@ -31,15 +31,20 @@ En un lote de varios creativos del mismo producto, cada pieza debe tener un áng
 **BAB** — Antes → Después → Puente | Transformación visible | Nivel 3-4
 **FAB** — Feature → Advantage → Benefit | Retargeting, promociones | Nivel 4
 
-**Estructura del texto principal:**
+**Estructura del texto principal (copy largo — sin límite de caracteres):**
 ```
-[Emoji] [Gancho — primera línea crítica]
-[2-3 líneas de contexto con el framework]
-✓ [Beneficio 1]
-✓ [Beneficio 2]
-✓ [Beneficio 3]
-[CTA suave + oferta]
+[Emoji] [Gancho fuerte — primera línea crítica, la más importante]
+
+[1-2 párrafos de contexto con el framework — desarrollar el problema o deseo]
+
+✅ [Beneficio 1 — solución, no spec]
+✅ [Beneficio 2 — solución, no spec]
+✅ [Beneficio 3 — solución, no spec]
+
+[CTA directo con oferta o urgencia si aplica]
 ```
+
+El copy largo funciona porque Meta muestra las primeras líneas y el usuario hace clic en "Ver más" si el gancho lo engancha. El gancho es lo más crítico — debe parar el scroll en la primera línea.
 
 **3 variaciones por pieza:** Versión A (Empática — PAS/BAB) | Versión B (Aspiracional — AIDA) | Versión C (Social Proof — FAB)
 
@@ -162,9 +167,8 @@ Sin preguntar, guardar el copy directamente:
 
 Reglas al guardar:
 - Usar **Versión A** (empática) como valores por defecto en `headline`, `body`, `description`, `call_to_action`, `link`.
-- Agregar las versiones B y C como comentarios YAML para A/B testing.
 - El `headline` debe ser el Título #1 (máx 40 chars).
-- El `body` debe ser la Versión A del texto principal (máx 125 chars).
+- El `body` es el copy largo completo de la Versión A — sin recortar.
 - El `description` debe ser el campo DESCRIPCIÓN (máx 30 chars).
 
 Al guardar mostrar:
