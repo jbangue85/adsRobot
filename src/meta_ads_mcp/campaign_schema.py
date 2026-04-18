@@ -84,13 +84,10 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
             if not resolved_asset.exists():
                 result.errors.append(f"ads[{index}].file does not exist: {asset_path}")
 
-        if ad_type == "video":
-            if _is_blank(ad.get("thumbnail")):
-                result.errors.append(f"ads[{index}].thumbnail is required for video ads")
-            else:
-                thumbnail_path = base_dir / str(ad["thumbnail"])
-                if not thumbnail_path.exists():
-                    result.errors.append(f"ads[{index}].thumbnail does not exist: {ad['thumbnail']}")
+        if ad_type == "video" and not _is_blank(ad.get("thumbnail")):
+            thumbnail_path = base_dir / str(ad["thumbnail"])
+            if not thumbnail_path.exists():
+                result.errors.append(f"ads[{index}].thumbnail does not exist: {ad['thumbnail']}")
 
         if isinstance(ad.get("headline"), str) and len(ad["headline"]) > 40:
             result.warnings.append(f"ads[{index}].headline exceeds 40 characters")
