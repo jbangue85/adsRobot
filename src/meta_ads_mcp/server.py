@@ -3,6 +3,7 @@ from mcp.server.fastmcp import FastMCP
 from meta_ads_mcp.tools.campaigns import (
     list_campaigns,
     get_campaign,
+    get_active_campaigns,
     create_campaign,
     update_campaign_status,
     update_campaign_budget,
@@ -25,13 +26,16 @@ from meta_ads_mcp.tools.insights import (
     get_account_insights,
     get_campaign_insights,
     get_ad_set_insights,
+    get_campaign_metrics,
+    get_daily_spend,
 )
 
-mcp = FastMCP("meta-ads")
+mcp = FastMCP("meta-ads", host="0.0.0.0", port=8000)
 
 # Campaigns
 mcp.tool()(list_campaigns)
 mcp.tool()(get_campaign)
+mcp.tool()(get_active_campaigns)
 mcp.tool()(create_campaign)
 mcp.tool()(update_campaign_status)
 mcp.tool()(update_campaign_budget)
@@ -57,10 +61,12 @@ mcp.tool()(create_ad)
 mcp.tool()(get_account_insights)
 mcp.tool()(get_campaign_insights)
 mcp.tool()(get_ad_set_insights)
+mcp.tool()(get_campaign_metrics)
+mcp.tool()(get_daily_spend)
 
 
 def main() -> None:
-    mcp.run(transport="stdio")
+    mcp.run(transport="streamable-http")
 
 
 if __name__ == "__main__":

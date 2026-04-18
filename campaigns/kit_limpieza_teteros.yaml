@@ -1,0 +1,85 @@
+# =====================================================
+# CAMPAÑA — Kit de Limpieza para Biberones
+# Targeting copiado de "14 ABR ADSET 01" (campaña activa)
+# =====================================================
+
+campaign:
+  name: "Kit Limpieza Biberones — [fecha]"       # ← Cambia [fecha] por ej: "17 ABR"
+  objective: OUTCOME_SALES
+  daily_budget: 60000                             # COP (60000 = $60,000 COP / día)
+  lifetime_budget: null
+  status: PAUSED                                  # Siempre PAUSED — actívala tú manualmente
+  special_ad_categories: []
+
+ad_set:
+  name: "[fecha] ADSET 01"                        # ← Cambia [fecha] por ej: "17 ABR"
+  optimization_goal: OFFSITE_CONVERSIONS
+  billing_event: IMPRESSIONS
+  daily_budget: 60000
+  bid_strategy: LOWEST_COST_WITHOUT_CAP
+  start_time: "2026-04-17T00:00:00-0500"         # ← Cambia por la fecha de inicio
+  end_time: null
+  targeting:
+    geo_locations:
+      countries: ["CO"]
+      location_types: ["home", "recent"]
+    excluded_geo_locations:
+      countries: []
+      regions:
+        - key: "725"
+          name: "Choco"
+          country: "CO"
+        - key: "738"
+          name: "San Andres y Providencia"
+          country: "CO"
+      cities:
+        - key: "472344"
+          name: "Leticia"
+          country: "CO"
+          radius: 40
+          distance_unit: "kilometer"
+      location_types: ["home", "recent"]
+    age_min: 22
+    age_max: 65
+    targeting_automation:
+      advantage_audience: 1
+
+ads:
+  # Agrega un bloque por cada video que tengas.
+  # Copia y pega este bloque las veces que necesites.
+
+  - name: "Video 01"
+    type: video
+    file: assets/videos/video1.mp4               # ← Ruta al archivo
+    thumbnail: assets/thumbnails/thumb1.jpg       # ← Opcional pero recomendado
+    headline: ""                                  # ← Máx 40 caracteres
+    body: ""                                      # ← Máx 125 caracteres
+    description: ""                               # ← Opcional, máx 30 caracteres
+    call_to_action: SHOP_NOW                      # SHOP_NOW | LEARN_MORE | GET_OFFER | CONTACT_US
+    link: ""                                      # ← URL de tu tienda o landing page
+    tone: BENEFIT
+    notes: ""
+
+  - name: "Video 02"
+    type: video
+    file: assets/videos/video2.mp4
+    thumbnail: assets/thumbnails/thumb2.jpg
+    headline: ""
+    body: ""
+    description: ""
+    call_to_action: SHOP_NOW
+    link: ""
+    tone: BENEFIT
+    notes: ""
+
+  # - name: "Video 03"
+  #   type: video
+  #   file: assets/videos/video3.mp4
+  #   thumbnail: assets/thumbnails/thumb3.jpg
+  #   headline: ""
+  #   body: ""
+  #   description: ""
+  #   call_to_action: SHOP_NOW
+  #   link: ""
+  #   tone: BENEFIT
+  #   notes: ""

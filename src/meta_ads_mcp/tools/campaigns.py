@@ -1,10 +1,11 @@
 from facebook_business.adobjects.campaign import Campaign
-from meta_ads_mcp.client import get_ad_account
+from meta_ads_mcp.client import get_ad_account, get_account_currency
 
 
 def list_campaigns(limit: int = 50) -> list[dict]:
     """Lista todas las campañas de la cuenta con estado, objetivo y presupuesto."""
     account = get_ad_account()
+    currency = get_account_currency()
     fields = [
         Campaign.Field.id,
         Campaign.Field.name,
@@ -17,7 +18,7 @@ def list_campaigns(limit: int = 50) -> list[dict]:
         Campaign.Field.stop_time,
     ]
     campaigns = account.get_campaigns(fields=fields, params={"limit": limit})
-    return [dict(c) for c in campaigns]
+    return [{**dict(c), "currency": currency} for c in campaigns]
 
 
 def get_campaign(campaign_id: str) -> dict:
@@ -36,7 +37,7 @@ def get_campaign(campaign_id: str) -> dict:
     ]
     campaign = Campaign(campaign_id)
     campaign.remote_read(fields=fields)
-    return dict(campaign)
+    return {**dict(campaign), "currency": get_account_currency()}
 
 
 def create_campaign(
@@ -88,6 +89,28 @@ def update_campaign_status(campaign_id: str, status: str) -> dict:
     campaign.update({Campaign.Field.status: status})
     campaign.remote_update()
     return {"id": campaign_id, "status": status, "updated": True}
+
+
+def get_active_campaigns() -> list[dict]:
+    """Retorna todas las campañas con estado ACTIVE."""
+    account = get_ad_account()
+    fields = [
+        Campaign.Field.id,
+        Campaign.Field.name,
+        Campaign.Field.status,
+        Campaign.Field.objective,
+        Campaign.Field.daily_budget,
+        Campaign.Field.lifetime_budget,
+        Campaign.Field.budget_remaining,
+        Campaign.Field.start_time,
+        Campaign.Field.stop_time,
+    ]
+    params = {
+        "filtering": [{"field": "effective_status", "operator": "IN", "value": ["ACTIVE"]}],
+    }
+    currency = get_account_currency()
+    campaigns = account.get_campaigns(fields=fields, params=params)
+    return [{**dict(c), "currency": currency} for c in campaigns]
 
 
 def update_campaign_budget(
