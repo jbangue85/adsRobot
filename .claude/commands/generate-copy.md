@@ -136,7 +136,13 @@ TÍTULOS (máx 5, 40 chars c/u):
 5.
 
 DESCRIPCIÓN (máx 30 chars):
+
+CALL TO ACTION — ¿Cuál usamos?
+  SHOP_NOW | LEARN_MORE | GET_OFFER | CONTACT_US | WATCH_MORE
+  SIGN_UP | BOOK_NOW | APPLY_NOW | DOWNLOAD | GET_QUOTE | SUBSCRIBE
 ```
+
+Esperar respuesta del usuario antes de continuar con el siguiente asset.
 
 ---
 
