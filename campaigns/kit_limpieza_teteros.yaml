@@ -48,7 +48,6 @@ ads:
   - name: "Video 01 — Bacterias ocultas"
     type: video
     file: assets/videos/Video_ads_01_ok.mp4
-    thumbnail: assets/thumbnails/thumb1.jpg
     headline: "Biberón limpio de verdad, mamá"
     body: |
       🦠 Las esponjas y cepillos manuales acumulan bacterias sin que te des cuenta.
@@ -70,7 +69,6 @@ ads:
   - name: "Video 02 — Consecuencia real"
     type: video
     file: assets/videos/Video_ads_02_ok.mp4
-    thumbnail: assets/thumbnails/thumb2.jpg
     headline: "La limpieza que tu bebé merece"
     body: |
       😰 ¿Sabías que la mala limpieza de biberones es una de las principales causas
@@ -94,7 +92,6 @@ ads:
   - name: "Video 04 — Versatilidad total"
     type: video
     file: assets/videos/Video_ads_04_ok.mp4
-    thumbnail: assets/thumbnails/thumb4.jpg
     headline: "Limpia biberones, chupos y más"
     body: |
       🍼 No es solo para biberones.
