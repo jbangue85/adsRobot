@@ -5,7 +5,7 @@
 ## Estructura del repositorio
 
 - `src/meta_ads_mcp/`: servidor MCP, cliente de la API de Meta y módulos de herramientas.
-- `campaigns/`: briefs de campaña, YAML de ejemplo y assets preparados.
+- `campaigns/`: una carpeta por campaña con su `campana.yaml` y sus assets (videos/imágenes, en gitignore).
 - `scripts/`: puntos de entrada para flujos de trabajo locales.
 - `docs/workflows/`: runbooks de operación para los skills de Claude.
 
@@ -24,7 +24,7 @@ python -m pip install -e .
 
 ```bash
 python scripts/run_mcp.py
-python scripts/validate_campaign.py campaigns/ejemplos/campana_ejemplo.yaml
+python scripts/validate_campaign.py campaigns/[nombre-campaña]/campana.yaml
 docker compose up --build
 ```
 

@@ -9,5 +9,5 @@ uv.lock
 dist/
 build/
 .DS_Store
-campaigns/assets/videos/
-campaigns/assets/images/
+campaigns/*/assets/videos/
+campaigns/*/assets/images/

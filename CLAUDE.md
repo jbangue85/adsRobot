@@ -12,7 +12,7 @@ python -m pip install -e .
 python scripts/run_mcp.py
 
 # Validar un YAML de campaña antes del lanzamiento
-python scripts/validate_campaign.py campaigns/ejemplos/campana_ejemplo.yaml
+python scripts/validate_campaign.py campaigns/[nombre-campaña]/campana.yaml
 
 # Ejecutar con Docker
 docker compose up --build
@@ -31,12 +31,12 @@ Cliente MCP → Servidor FastMCP (server.py :8000/mcp)
 
 - **`server.py`** — Punto de entrada; registra todas las herramientas e inicia el servidor HTTP.
 - **`client.py`** — Singleton lazy: inicializa `FacebookAdsApi` una vez desde variables de entorno y cachea el objeto `AdAccount`.
-- **`campaign_schema.py`** — Validador YAML que aplica los límites de Meta (headline ≤40 chars, body ≤125 chars) y verifica la existencia de assets.
+- **`campaign_schema.py`** — Validador YAML que aplica los límites de Meta (headline ≤40 chars) y verifica la existencia de assets.
 - **`tools/`** — Un módulo por recurso: `campaigns`, `ad_sets`, `ads`, `creatives`, `insights`, más `__init__.py`.
 
 ## Flujo de campaña
 
-Las campañas se definen como archivos YAML en `campaigns/`. Los assets (videos, imágenes) van en `campaigns/assets/` (en gitignore). El flujo de lanzamiento es siempre:
+Cada campaña vive en su propia carpeta: `campaigns/[nombre-campaña]/campana.yaml` con sus assets en `assets/videos/` y `assets/images/` (en gitignore). El flujo de lanzamiento es siempre:
 
 1. Validar YAML → `validate_campaign.py`
 2. Crear campaña → ad set → (por cada anuncio) subir asset → crear creativo → crear anuncio
