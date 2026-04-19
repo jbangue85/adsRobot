@@ -27,7 +27,8 @@ Sigue este orden exacto — cada paso depende del anterior:
 Para cada ad en `ads:`:
 
 **Si `type: image`:**
-1. `upload_image(file)` → obtén `image_hash`
+1. Antes de subir: si el nombre del archivo contiene indicios de generación por IA (ej. "Gemini_Generated", "DALL-E", "midjourney", "generated", etc.), renombrarlo a un nombre descriptivo neutral (ej. `antes_despues_beneficios.png`) usando el contenido visual como referencia.
+2. `upload_image(file)` → obtén `image_hash`
 2. El ad usa campos en plural cuando están presentes en el YAML:
    - Si el YAML tiene `headlines` (lista) y/o `bodies` (lista) → usar esos directamente
    - Si el YAML tiene `headline` y `body` (strings simples) → pasarlos como listas de un elemento

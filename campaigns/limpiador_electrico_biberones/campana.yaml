@@ -212,3 +212,206 @@ ads:
       - "2 velocidades, cero esfuerzo"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
+
+  - name: "Img 01 — Antes/Después beneficios"
+    type: image
+    file: assets/images/antes_despues_beneficios.png
+    headlines:
+      - "Biberones 100% limpios en segundos"
+      - "Adiós a los residuos de leche"
+      - "Limpia profundo donde no llega el cepillo"
+      - "Sin esfuerzo, sin bacterias, sin dudas"
+      - "Cabezales para todo accesorio de bebé"
+    bodies:
+      - |
+        🍼 ¿Cansada de limpiar biberones a mano y nunca saber si quedaron bien?
+
+        El cepillo manual no llega al fondo, acumula bacterias y te toma el doble del tiempo. Eso se acabó.
+
+        El Limpiador Eléctrico de Biberones llega a cada rincón con sus cabezales intercambiables — limpieza profunda, sin esfuerzo, en segundos.
+
+        ✅ Limpieza profunda y sin esfuerzo en cada uso
+        ✅ Cabezales intercambiables para cada accesorio
+        ✅ Biberones 100% higiénicos y listos al instante
+
+        Tu bebé lo merece. 👇
+      - |
+        ✨ Antes: residuos de leche pegados, bacterias ocultas, brazos cansados.
+
+        Ahora: 30 segundos y listo. Sin fuerza. Sin dudas.
+
+        El Limpiador Eléctrico de Biberones transforma tu rutina diaria — cabezales intercambiables que llegan donde el cepillo nunca llegó, con una limpieza que realmente se ve.
+
+        ✅ Limpieza profunda y sin esfuerzo
+        ✅ Cabezales para biberones, tetinas y más
+        ✅ Biberones higiénicos listos al instante
+
+        Es el cambio que estabas esperando. 👇
+      - |
+        💪 Tres problemas reales. Una sola solución.
+
+        1. Residuos de leche difíciles de quitar → cerdas de silicona que llegan al fondo
+        2. Limpiar a mano toma tiempo → motor eléctrico hace el trabajo en segundos
+        3. Bacterias en tetinas y fondos → limpieza profunda en cada rincón
+
+        El Limpiador Eléctrico de Biberones resuelve los tres.
+
+        ✅ Limpieza profunda sin esfuerzo
+        ✅ Cabezales para todo accesorio de bebé
+        ✅ Biberones 100% higiénicos
+
+        Un solo producto, tres problemas menos. 👇
+    descriptions:
+      - "Limpieza profunda sin esfuerzo"
+      - "Cabezales para cada accesorio"
+      - "Resultados visibles al instante"
+    call_to_action: SHOP_NOW
+    link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
+
+  - name: "Img 02 — Comparativa precio"
+    type: image
+    file: assets/images/comparativa_precio.png
+    headlines:
+      - "Biberón sucio vs. biberón perfecto"
+      - "Hoy $109.900 — Oferta especial"
+      - "Lo que el cepillo nunca pudo hacer"
+      - "Rotación eléctrica hasta el fondo"
+      - "Kit limpiador con oferta limitada"
+    bodies:
+      - |
+        🆚 El cepillo manual no llega al fondo. No elimina bacterias. Desgasta tus manos.
+
+        El Kit Limpiador de Biberones sí.
+
+        Rotación eléctrica que llega hasta el último rincón, elimina bacterias y hongos, y tiene cabezales para tetinas, vasos y biberones — todo en un solo producto.
+
+        ✅ Rotación eléctrica que llega hasta el fondo
+        ✅ Elimina bacterias, hongos y residuos
+        ✅ Cabezales para tetinas, vasos y biberones
+
+        Hoy: $109.900 (antes $137.375). 👇
+      - |
+        💥 La diferencia es exactamente esta:
+
+        Biberón con cepillo manual → residuos pegados, malos olores, manos cansadas.
+        Biberón con el Kit Eléctrico → limpio en 30 segundos, sin esfuerzo, sin dudas.
+
+        ✅ Rotación eléctrica hasta el fondo
+        ✅ Elimina bacterias y residuos de leche
+        ✅ Cabezales para tetinas, vasos y biberones
+
+        Oferta: $109.900. No se repite. 👇
+      - |
+        🏆 El cepillo manual perdió. El Kit Eléctrico ganó.
+
+        Miles de mamás ya lo comprobaron: una vez que lo usas, no hay vuelta atrás.
+
+        ✅ Rotación eléctrica que llega donde el cepillo no puede
+        ✅ Sin bacterias, sin hongos, sin esfuerzo
+        ✅ Cabezales para todo lo que necesita tu bebé
+
+        Hoy $109.900 (ahorrás $27.475). 👇
+    descriptions:
+      - "Oferta: $109.900 hoy"
+      - "Antes $137.375 — Ahorrás ya"
+      - "Rotación eléctrica profunda"
+    call_to_action: SHOP_NOW
+    link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
+
+  - name: "Img 03 — Resultado precio"
+    type: image
+    file: assets/images/resultado_precio.png
+    headlines:
+      - "Biberones perfectos desde el primer uso"
+      - "Antes $137.375 → Hoy $109.900"
+      - "Limpia sin bacterias, sin esfuerzo"
+      - "El resultado que el cepillo no da"
+      - "Oferta limitada — no esperes más"
+    bodies:
+      - |
+        🍼 ¿Ves la diferencia? Eso es lo que hace el Limpiador Eléctrico de Biberones.
+
+        Del biberón amarillento y con residuos al biberón perfectamente transparente — en segundos, sin fuerza, sin cepillos que no llegan.
+
+        ✅ Limpieza profunda sin bacterias
+        ✅ Silicona que no raya ni daña el biberón
+        ✅ Resultado visible desde el primer uso
+
+        Hoy $109.900 (antes $137.375). Oferta limitada. 👇
+      - |
+        ✨ Así se ve un biberón realmente limpio.
+
+        Cerdas de silicona que rotan y alcanzan cada rincón, dejando el biberón de tu bebé impecable en segundos.
+
+        ✅ Sin residuos de leche ni malos olores
+        ✅ Silicona suave que protege el biberón
+        ✅ Resultado que se ve al primer lavado
+
+        Oferta especial hoy: $109.900. 👇
+      - |
+        💡 Una imagen vale más que mil palabras.
+
+        Izquierda: lo que deja el cepillo manual. Derecha: lo que hace el Limpiador Eléctrico.
+
+        ✅ Limpieza visible desde el primer uso
+        ✅ Sin bacterias, sin residuos, sin esfuerzo
+        ✅ Silicona que cuida el biberón
+
+        Hoy $109.900 (ahorrás $27.475). 👇
+    descriptions:
+      - "Oferta limitada: $109.900"
+      - "Resultado visible al instante"
+      - "Antes $137.375 → Ahorrás ya"
+    call_to_action: SHOP_NOW
+    link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
+
+  - name: "Img 04 — Antes/Después pagos"
+    type: image
+    file: assets/images/antes_despues_pagos.png
+    headlines:
+      - "Biberón perfecto — paga con Nequi"
+      - "Limpieza de biberones sin bacterias"
+      - "Pagá con Nequi, PSE, VISA o tarjeta"
+      - "De sucio a perfecto en segundos"
+      - "Fácil de comprar, fácil de usar"
+    bodies:
+      - |
+        🍼 Izquierda: residuos de leche, bacterias, malos olores.
+        Derecha: biberón perfecto, transparente, listo para tu bebé.
+
+        Podés comprarlo hoy mismo con Nequi, Daviplata, PSE, VISA o Mastercard.
+
+        ✅ Limpieza profunda sin bacterias
+        ✅ Silicona suave que no raya el biberón
+        ✅ Pago fácil: Nequi, PSE, tarjeta o contra entrega
+
+        Tu bebé merece biberones perfectos. 👇
+      - |
+        ✅ Pago con Nequi
+        ✅ Pago con Daviplata
+        ✅ PSE, VISA, Mastercard
+        ✅ Contra entrega disponible
+
+        El Limpiador Eléctrico de Biberones transforma el biberón de tu bebé — de residuos y bacterias a limpieza profunda en segundos. Sin esfuerzo. Sin cepillos que no llegan.
+
+        ✅ Limpieza profunda y visible
+        ✅ Silicona que protege el biberón
+        ✅ Todas las formas de pago disponibles
+
+        Cómpralo hoy. 👇
+      - |
+        💳 En Colombia lo pagás como quieras — Nequi, Daviplata, PSE, tarjeta o al recibirlo.
+
+        El Limpiador Eléctrico hace lo que el cepillo manual nunca pudo.
+
+        ✅ Limpieza profunda sin esfuerzo
+        ✅ Silicona que cuida cada biberón
+        ✅ Pago fácil con todos los métodos
+
+        Fácil de comprar, fácil de usar. 👇
+    descriptions:
+      - "Nequi, PSE, tarjeta o contra entrega"
+      - "Pago fácil — resultado garantizado"
+      - "Todas las formas de pago"
+    call_to_action: SHOP_NOW
+    link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
