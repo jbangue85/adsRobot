@@ -31,7 +31,9 @@ def create_ad_set(
     lifetime_budget: int | None = None,
     billing_event: str = "IMPRESSIONS",
     optimization_goal: str = "REACH",
+    bid_strategy: str | None = None,
     bid_amount: int | None = None,
+    promoted_object: dict | None = None,
     targeting: dict | None = None,
     start_time: str | None = None,
     end_time: str | None = None,
@@ -47,6 +49,7 @@ def create_ad_set(
         lifetime_budget: Presupuesto total en centavos.
         billing_event: Evento de facturación (IMPRESSIONS, LINK_CLICKS, etc.).
         optimization_goal: Objetivo de optimización (REACH, LINK_CLICKS, CONVERSIONS, etc.).
+        bid_strategy: Estrategia de puja (LOWEST_COST_WITHOUT_CAP, LOWEST_COST_WITH_BID_CAP, etc.).
         bid_amount: Monto de puja en centavos (opcional).
         targeting: Dict de targeting de Meta (geo_locations, age_min, age_max, etc.).
         start_time: Fecha de inicio en formato ISO 8601 (ej. "2024-01-01T00:00:00-0500").
@@ -66,8 +69,12 @@ def create_ad_set(
         params[AdSet.Field.daily_budget] = daily_budget
     if lifetime_budget is not None:
         params[AdSet.Field.lifetime_budget] = lifetime_budget
+    if bid_strategy is not None:
+        params["bid_strategy"] = bid_strategy
     if bid_amount is not None:
         params[AdSet.Field.bid_amount] = bid_amount
+    if promoted_object is not None:
+        params["promoted_object"] = promoted_object
     if start_time is not None:
         params[AdSet.Field.start_time] = start_time
     if end_time is not None:

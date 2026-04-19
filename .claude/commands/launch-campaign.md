@@ -17,6 +17,8 @@ Sigue este orden exacto — cada paso depende del anterior:
 
 ### 3. Crear el ad set
 - Llama `create_ad_set` con los parámetros del bloque `ad_set:` + el `campaign_id`
+- Si el YAML tiene `promoted_object.pixel_id: "${META_PIXEL_ID}"`, reemplazar por el valor de la variable de entorno `META_PIXEL_ID` antes de enviar
+- El ad set **NO debe tener `daily_budget`** si la campaña ya tiene presupuesto a nivel de campaña (CBO)
 - Guarda el `ad_set_id` devuelto
 - Informa: "✓ Ad Set creado: [nombre] (ID: [id])"
 
@@ -26,15 +28,22 @@ Para cada ad en `ads:`:
 
 **Si `type: image`:**
 1. `upload_image(file)` → obtén `image_hash`
-2. `create_ad_creative_image(name, image_hash, headline, body, link, call_to_action, description)` → obtén `creative_id`
+2. El ad usa campos en plural cuando están presentes en el YAML:
+   - Si el YAML tiene `headlines` (lista) y/o `bodies` (lista) → usar esos directamente
+   - Si el YAML tiene `headline` y `body` (strings simples) → pasarlos como listas de un elemento
+   - `create_ad_creative_image(name, image_hash, headlines=..., bodies=..., link, call_to_action, descriptions=...)` → obtén `creative_id`
 3. `create_ad(ad_set_id, creative_id, name)` → obtén `ad_id`
 4. Informa: "✓ [nombre] — imagen subida, creativo y anuncio creados"
 
 **Si `type: video`:**
-1. `upload_video(file, title=name, thumbnail_path=thumbnail)` → obtén `video_id`
-2. `create_ad_creative_video(name, video_id, headline, body, link, call_to_action, description, image_hash=thumbnail_hash_si_existe)` → obtén `creative_id`
-3. `create_ad(ad_set_id, creative_id, name)` → obtén `ad_id`
-4. Informa: "✓ [nombre] — video subido, creativo y anuncio creados"
+1. `upload_video(file, title=name)` → obtén `video_id`
+2. Extraer thumbnail con ffmpeg (primer fotograma) → `upload_image(thumb)` → obtén `image_hash`
+3. El ad usa campos en plural cuando están presentes en el YAML:
+   - Si el YAML tiene `headlines` (lista) y/o `bodies` (lista) → usar esos directamente
+   - Si el YAML tiene `headline` y `body` (strings simples) → pasarlos como listas de un elemento
+   - `create_ad_creative_video(name, video_id, headlines=..., bodies=..., link, call_to_action, descriptions=..., image_hash=...)` → obtén `creative_id`
+4. `create_ad(ad_set_id, creative_id, name)` → obtén `ad_id`
+5. Informa: "✓ [nombre] — video subido, creativo y anuncio creados"
 
 ### 5. Resumen final
 
@@ -64,3 +73,4 @@ Y al final:
 - Los archivos de video/imagen deben existir en las rutas especificadas en el YAML
 - Los budgets están en **centavos**: 5000 = $50.00 USD
 - Si el campo `META_PAGE_ID` no está en el `.env`, pide al usuario que lo agregue antes de continuar
+- Variables de entorno disponibles: `META_PAGE_ID`, `META_PIXEL_ID` — leerlas del `.env` para reemplazar placeholders en el YAML (`${META_PIXEL_ID}`, etc.)

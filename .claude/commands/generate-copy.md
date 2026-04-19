@@ -169,10 +169,13 @@ Sin preguntar, guardar el copy directamente:
 - Si no hay YAML → crear `campaigns/[nombre-producto-slug]/campana.yaml` y las carpetas `assets/videos/` y `assets/images/` dentro.
 
 Reglas al guardar:
-- Usar **Versión A** (empática) como valores por defecto en `headline`, `body`, `description`, `call_to_action`, `link`.
-- El `headline` debe ser el Título #1 (máx 40 chars).
-- El `body` es el copy largo completo de la Versión A — sin recortar.
-- El `description` debe ser el campo DESCRIPCIÓN (máx 30 chars).
+- Usar campos en **plural** para soportar múltiples variaciones (asset_feed_spec):
+  - `headlines`: lista con los 5 títulos generados (máx 40 chars c/u)
+  - `bodies`: lista con las 3 versiones de copy (A, B, C) — copy largo completo, sin recortar
+  - `descriptions`: lista con las descripciones generadas (máx 30 chars c/u)
+  - `call_to_action`: string simple (ej. SHOP_NOW)
+  - `link`: URL de destino
+- **NO incluir** campos singulares `headline`, `body`, `description` — el validador acepta la forma plural.
 - **NO incluir** el campo `thumbnail` — Meta usa el primer fotograma del video por defecto.
 - **NO incluir** el campo `tone` ni `notes` — son campos internos que no se usan.
 

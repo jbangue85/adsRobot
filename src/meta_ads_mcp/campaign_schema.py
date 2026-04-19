@@ -9,7 +9,7 @@ import yaml
 
 
 VALID_AD_TYPES = {"image", "video"}
-COMMON_AD_FIELDS = ("name", "type", "file", "headline", "body", "call_to_action", "link")
+COMMON_AD_FIELDS = ("name", "type", "file", "call_to_action", "link")
 
 
 @dataclass
@@ -89,10 +89,21 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
             if not thumbnail_path.exists():
                 result.errors.append(f"ads[{index}].thumbnail does not exist: {ad['thumbnail']}")
 
-        if isinstance(ad.get("headline"), str) and len(ad["headline"]) > 40:
-            result.warnings.append(f"ads[{index}].headline exceeds 40 characters")
-        if isinstance(ad.get("body"), str) and len(ad["body"]) > 4096:
-            result.warnings.append(f"ads[{index}].body exceeds 4096 characters")
+        # Validate headline(s): accept single string or list
+        headlines = ad.get("headlines") or ([ad["headline"]] if ad.get("headline") else [])
+        if not headlines:
+            result.errors.append(f"ads[{index}].headlines (or headline) is required")
+        for h in headlines if isinstance(headlines, list) else [headlines]:
+            if isinstance(h, str) and len(h) > 40:
+                result.warnings.append(f"ads[{index}] headline exceeds 40 characters: '{h[:40]}…'")
+
+        # Validate body/bodies
+        bodies = ad.get("bodies") or ([ad["body"]] if ad.get("body") else [])
+        if not bodies:
+            result.errors.append(f"ads[{index}].bodies (or body) is required")
+        for b in bodies if isinstance(bodies, list) else [bodies]:
+            if isinstance(b, str) and len(b) > 4096:
+                result.warnings.append(f"ads[{index}] body exceeds 4096 characters")
 
         result.ads.append(
             {

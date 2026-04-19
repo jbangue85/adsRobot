@@ -4,21 +4,24 @@
 # =====================================================
 
 campaign:
-  name: "Limpiador Eléctrico Biberones — 19 ABR"
+  name: "Limpiador Eléctrico Biberones — 21 ABR"
   objective: OUTCOME_SALES
+  bid_strategy: LOWEST_COST_WITHOUT_CAP
   daily_budget: 60000                               # COP ($60.000 COP / día)
   lifetime_budget: null
   status: PAUSED                                    # Siempre PAUSED — activar manualmente
   special_ad_categories: []
 
 ad_set:
-  name: "19 ABR ADSET 01"
+  name: "21 ABR ADSET 01"
   optimization_goal: OFFSITE_CONVERSIONS
   billing_event: IMPRESSIONS
-  daily_budget: 60000
   bid_strategy: LOWEST_COST_WITHOUT_CAP
-  start_time: "2026-04-19T00:00:00-0500"
+  start_time: "2026-04-21T00:00:00-0500"
   end_time: null
+  promoted_object:
+    pixel_id: "${META_PIXEL_ID}"
+    custom_event_type: PURCHASE
   targeting:
     geo_locations:
       countries: ["CO"]
@@ -48,65 +51,164 @@ ads:
   - name: "Video 01 — Bacterias ocultas"
     type: video
     file: assets/videos/Video_ads_01_ok.mp4
-    headline: "Biberón limpio de verdad, mamá"
-    body: |
-      🦠 Las esponjas y cepillos manuales acumulan bacterias sin que te des cuenta.
+    headlines:
+      - "Biberón limpio de verdad, mamá"
+      - "Las bacterias que no ves"
+      - "¿Tu biberón realmente está limpio?"
+      - "Limpieza profunda + luz UV"
+      - "El cepillo no llega hasta ahí"
+    bodies:
+      - |
+        🦠 Las esponjas y cepillos manuales acumulan bacterias sin que te des cuenta.
 
-      Tu bebé toma leche de un biberón que parece limpio... pero no lo está.
+        Tu bebé toma leche de un biberón que parece limpio... pero no lo está.
 
-      El Limpiador Eléctrico limpia profundo donde el cepillo no llega, y la luz UV
-      sanitiza todo mientras carga.
+        El Limpiador Eléctrico limpia profundo donde el cepillo no llega, y la luz UV
+        sanitiza todo mientras carga.
 
-      ✅ Dos velocidades para cualquier tipo de biberón
-      ✅ Luz UV que desinfecta mientras guarda
-      ✅ Cabezales para biberones, chupos y tetinas
+        ✅ Dos velocidades para cualquier tipo de biberón
+        ✅ Luz UV que desinfecta mientras guarda
+        ✅ Cabezales para biberones, chupos y tetinas
 
-      Protege a tu bebé desde el primer lavado. 👇
-    description: "Limpieza profunda + luz UV"
+        Protege a tu bebé desde el primer lavado. 👇
+      - |
+        ✨ Las mamás que saben, no confían en el cepillo manual.
+
+        Imagina saber que cada biberón que le das a tu bebé está completamente limpio — no solo por fuera, sino en cada rincón, cada esquina, cada espacio donde el cepillo no llega.
+
+        Eso es lo que hace el Limpiador Eléctrico de Biberones: limpieza profunda en segundos, con luz UV que sanitiza mientras guarda.
+
+        ✅ Cerdas de silicona que rotan y llegan donde el cepillo no puede
+        ✅ Luz UV integrada que elimina bacterias mientras carga
+        ✅ Cabezales intercambiables para biberones, chupos y tetinas
+
+        Ese nivel de tranquilidad lo mereces. 👇
+      - |
+        🦠 Miles de mamás ya cambiaron el cepillo manual por esto.
+
+        El Limpiador Eléctrico de Biberones tiene cerdas de silicona que rotan a dos velocidades — llegan a cada rincón del biberón sin esfuerzo. La luz UV integrada sanitiza todo mientras carga, sin químicos, sin pasos extras.
+
+        Una sola carga dura semanas. Un solo limpiador reemplaza el cepillo, el desinfectante y el esfuerzo.
+
+        ✅ Dos velocidades para cualquier tipo de biberón
+        ✅ Luz UV que desinfecta mientras guarda
+        ✅ Cabezales para biberones, chupos y tetinas
+
+        La decisión más fácil que vas a tomar hoy. 👇
+    descriptions:
+      - "Limpieza profunda + luz UV"
+      - "Silicona + UV sin químicos"
+      - "Un limpiador para todo"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
 
   - name: "Video 02 — Consecuencia real"
     type: video
     file: assets/videos/Video_ads_02_ok.mp4
-    headline: "La limpieza que tu bebé merece"
-    body: |
-      😰 ¿Sabías que la mala limpieza de biberones es una de las principales causas
-      de diarrea en bebés?
+    headlines:
+      - "La limpieza que tu bebé merece"
+      - "El cepillo no elimina todo"
+      - "Silicona duradera + carga Type-C"
+      - "Llegó donde el cepillo no llega"
+      - "Más control, menos bacterias"
+    bodies:
+      - |
+        😰 ¿Sabías que la mala limpieza de biberones es una de las principales causas
+        de diarrea en bebés?
 
-      No es exageración. Los residuos de leche que quedan en las esquinas del biberón
-      se convierten en bacterias. Y el cepillo manual no los elimina del todo.
+        No es exageración. Los residuos de leche que quedan en las esquinas del biberón
+        se convierten en bacterias. Y el cepillo manual no los elimina del todo.
 
-      El Limpiador Eléctrico tiene cerdas de silicona de larga duración que llegan a
-      cada rincón — y se recarga con cable Type-C.
+        El Limpiador Eléctrico tiene cerdas de silicona de larga duración que llegan a
+        cada rincón — y se recarga con cable Type-C.
 
-      ✅ Silicona que no raya ni daña el biberón
-      ✅ Mango antideslizante para más control
-      ✅ Incluye mezclador de leche y cepillo pequeño para detalles
+        ✅ Silicona que no raya ni daña el biberón
+        ✅ Mango antideslizante para más control
+        ✅ Incluye mezclador de leche y cepillo pequeño para detalles
 
-      Tu bebé merece biberones realmente limpios. 👇
-    description: "Silicona duradera + carga Type-C"
+        Tu bebé merece biberones realmente limpios. 👇
+      - |
+        🍼 Tu bebé merece más que un biberón "que parece limpio".
+
+        Piénsalo: el cepillo manual pasa por el biberón pero no elimina los residuos de leche que se quedan pegados en las esquinas. Con el tiempo, esos residuos se convierten en bacterias.
+
+        El Limpiador Eléctrico tiene cerdas de silicona de larga duración que rotan y alcanzan cada milímetro del interior — y se recarga con cable Type-C en minutos.
+
+        ✅ Silicona que no raya ni daña el biberón
+        ✅ Mango antideslizante para más control
+        ✅ Incluye mezclador de leche y cepillo pequeño para detalles
+
+        Limpieza real, desde el primer lavado. 👇
+      - |
+        💪 El cepillo de silicona que reemplaza al manual — y lo supera.
+
+        Las cerdas de silicona del Limpiador Eléctrico son de larga duración, no retienen bacterias y llegan a cada rincón del biberón. No necesitas fuerza ni técnica — el motor hace el trabajo.
+
+        Se recarga con cable Type-C y viene con mezclador de leche y cepillo pequeño para los detalles. Todo en un solo producto.
+
+        ✅ Silicona que no raya ni daña el biberón
+        ✅ Mango antideslizante para más control
+        ✅ Mezclador y cepillo de detalles incluidos
+
+        Lo que toda mamá debería tener desde el primer mes. 👇
+    descriptions:
+      - "Silicona duradera + carga Type-C"
+      - "Limpieza real desde el primer uso"
+      - "Motor + silicona sin esfuerzo"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"
 
   - name: "Video 04 — Versatilidad total"
     type: video
     file: assets/videos/Video_ads_04_ok.mp4
-    headline: "Limpia biberones, chupos y más"
-    body: |
-      🍼 No es solo para biberones.
+    headlines:
+      - "Limpia biberones, chupos y más"
+      - "Impermeable + silicona líquida"
+      - "Un limpiador para todo lo de bebé"
+      - "2 velocidades, infinitas opciones"
+      - "Resistente a agua hirviendo"
+    bodies:
+      - |
+        🍼 No es solo para biberones.
 
-      El Limpiador Eléctrico de silicona líquida limpia biberones gruesos, delgados,
-      de plástico o de vidrio. Y también chupos, pitillos reutilizables y más.
+        El Limpiador Eléctrico de silicona líquida limpia biberones gruesos, delgados,
+        de plástico o de vidrio. Y también chupos, pitillos reutilizables y más.
 
-      Lo podés lavar con agua hirviendo sin que se dañe — es completamente
-      impermeable y resistente.
+        Lo podés lavar con agua hirviendo sin que se dañe — es completamente
+        impermeable y resistente.
 
-      ✅ Cabezal rotatorio de 2 velocidades
-      ✅ Apto para agua hirviendo y lavado profundo
-      ✅ Contenedor con luz azul sanitizante incluido
+        ✅ Cabezal rotatorio de 2 velocidades
+        ✅ Apto para agua hirviendo y lavado profundo
+        ✅ Contenedor con luz azul sanitizante incluido
 
-      Un solo limpiador para todo lo de tu bebé. 👇
-    description: "Impermeable + silicona líquida"
+        Un solo limpiador para todo lo de tu bebé. 👇
+      - |
+        🌟 Un solo producto para limpiar todo lo de tu bebé — y te lo explicamos.
+
+        El Limpiador Eléctrico de Biberones no solo limpia biberones: también chupos, pitillos reutilizables, y todo lo que tu bebé use. Es de silicona líquida, apta para agua hirviendo, completamente impermeable.
+
+        El cabezal rotatorio funciona a dos velocidades y se adapta a biberones gruesos, delgados, de plástico o de vidrio — sin rayar, sin dañar.
+
+        ✅ Cabezal rotatorio de 2 velocidades
+        ✅ Apto para agua hirviendo y lavado profundo
+        ✅ Contenedor con luz azul sanitizante incluido
+
+        Simplifica tu rutina desde hoy. 👇
+      - |
+        🍼 Biberones, chupos, pitillos — todo queda impecable con uno solo.
+
+        La silicona líquida del Limpiador Eléctrico resiste agua hirviendo sin deformarse. El cabezal rotatorio a 2 velocidades se ajusta a cualquier biberón — grueso, delgado, plástico o vidrio. Y el contenedor con luz azul sanitiza mientras guarda.
+
+        No necesitas tres productos distintos para limpiar lo de tu bebé. Con este, un solo movimiento lo hace todo.
+
+        ✅ Impermeable y resistente a agua hirviendo
+        ✅ Silicona líquida que no raya ningún material
+        ✅ Contenedor sanitizante con luz azul incluido
+
+        El kit completo en un solo producto. 👇
+    descriptions:
+      - "Impermeable + silicona líquida"
+      - "1 limpiador para todo lo de bebé"
+      - "2 velocidades, cero esfuerzo"
     call_to_action: SHOP_NOW
     link: "https://mercatelia.com/products/kit-de-limpieza-para-biberones"

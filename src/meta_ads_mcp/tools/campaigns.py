@@ -44,6 +44,7 @@ def create_campaign(
     name: str,
     objective: str,
     status: str = "PAUSED",
+    bid_strategy: str | None = None,
     daily_budget: int | None = None,
     lifetime_budget: int | None = None,
     special_ad_categories: list[str] | None = None,
@@ -56,6 +57,8 @@ def create_campaign(
         objective: Objetivo (OUTCOME_TRAFFIC, OUTCOME_AWARENESS, OUTCOME_LEADS,
                    OUTCOME_SALES, OUTCOME_ENGAGEMENT, OUTCOME_APP_PROMOTION).
         status: Estado inicial — ACTIVE o PAUSED (default: PAUSED).
+        bid_strategy: Estrategia de puja (LOWEST_COST_WITHOUT_CAP, LOWEST_COST_WITH_BID_CAP, COST_CAP).
+                      Si no se especifica, Meta usa LOWEST_COST_WITH_BID_CAP por defecto.
         daily_budget: Presupuesto diario en centavos (ej. 1000 = $10.00).
         lifetime_budget: Presupuesto total en centavos.
         special_ad_categories: Lista de categorías especiales (ej. ["CREDIT", "EMPLOYMENT"]).
@@ -68,6 +71,8 @@ def create_campaign(
         Campaign.Field.status: status,
         Campaign.Field.special_ad_categories: special_ad_categories or [],
     }
+    if bid_strategy is not None:
+        params[Campaign.Field.bid_strategy] = bid_strategy
     if daily_budget is not None:
         params[Campaign.Field.daily_budget] = daily_budget
     if lifetime_budget is not None:
