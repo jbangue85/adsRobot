@@ -1,2 +1,2 @@
 [mcp_servers.meta-ads-local]
-url = "http://localhost:8000/mcp"
+url = "http://192.168.1.100:8001/mcp"
