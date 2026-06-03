@@ -70,4 +70,13 @@ Se requieren cinco variables (ver `.env.example`): `META_APP_ID`, `META_APP_SECR
 
 ## Configuración MCP
 
-`.codex/config.toml` apunta a `http://localhost:8000/mcp`. El servidor corre localmente con `scripts/run_mcp.py` o mediante Docker. El nombre del conector MCP es `meta-ads-local` para evitar colisión con cualquier conector alojado.
+El nombre del conector MCP es `meta-ads-local` para evitar colisión con cualquier conector alojado.
+
+`.codex/config.toml` usa `http://localhost:8000/mcp` cuando el cliente MCP corre en la misma máquina donde está levantado el servidor. Si el servidor corre en la Raspberry Pi y Codex corre desde otra máquina de la red, configurar el cliente MCP contra:
+
+```toml
+[mcp_servers.meta-ads-local]
+url = "http://192.168.1.100:8000/mcp"
+```
+
+El servidor puede levantarse localmente con `scripts/run_mcp.py` o mediante Docker Compose.
