@@ -7,29 +7,65 @@
 - `src/meta_ads_mcp/`: servidor MCP, cliente de la API de Meta y módulos de herramientas.
 - `campaigns/`: una carpeta por campaña con su `campana.yaml` y sus assets (videos/imágenes, en gitignore).
 - `scripts/`: puntos de entrada para flujos de trabajo locales.
-- `docs/workflows/`: runbooks de operación para los skills de Claude.
 
 ## Configuración local
 
-1. Crear un virtualenv con Python 3.12.
-2. Instalar el paquete en modo editable:
+1. Instalar `pyenv` y Poetry.
+2. Instalar la versión de Python fijada para el proyecto:
 
 ```bash
-python -m pip install -e .
+pyenv install 3.12.13
 ```
 
-3. Copiar `.env.example` a `.env` y completar con credenciales válidas de Meta.
+3. Configurar Poetry para crear el virtualenv dentro del proyecto:
+
+```bash
+poetry config virtualenvs.in-project true --local
+```
+
+4. Crear el virtualenv con el Python de `pyenv` e instalar dependencias en `.venv/`:
+
+```bash
+poetry env use "$(pyenv which python)"
+poetry install
+```
+
+5. Copiar `.env.example` a `.env` y completar con credenciales válidas de Meta.
 
 ## Comandos comunes
 
 ```bash
-python scripts/run_mcp.py
-python scripts/validate_campaign.py campaigns/[nombre-campaña]/campana.yaml
+poetry run python scripts/run_mcp.py
+poetry run python scripts/validate_campaign.py campaigns/[nombre-campaña]/campana.yaml
+poetry run meta-ads-mcp
 docker compose up --build
 ```
 
 ## Flujo de trabajo
 
 - Validar siempre con `scripts/validate_campaign.py` antes de lanzar una campaña.
-- Usar el skill `/launch-campaign` para crear la estructura completa en Meta desde un YAML.
-- Usar el skill `/generate-copy` para generar copy y prompts creativos desde un brief de producto.
+- Crear la estructura en Meta desde el YAML en este orden: campaña, ad set, assets, creativos y anuncios.
+- Dejar campañas y anuncios en `PAUSED` salvo que se solicite activarlos explícitamente.
+
+## Configuración MCP
+
+La configuración local para Codex vive en `.codex/config.toml` y apunta a:
+
+```toml
+[mcp_servers.meta-ads-local]
+url = "http://localhost:8000/mcp"
+```
+
+## Skills de Codex
+
+Los flujos antiguos de comandos se migraron a skills locales de Codex:
+
+- `meta-ads-launch-campaign`: valida y lanza campañas desde `campaigns/*/campana.yaml`.
+- `meta-ads-generate-copy`: genera copy para anuncios y completa campos YAML.
+
+Ejemplos de uso:
+
+```text
+Usa $meta-ads-launch-campaign para lanzar campaigns/mi_campana/campana.yaml
+Usa $meta-ads-generate-copy para completar el copy de campaigns/mi_campana/campana.yaml
+```

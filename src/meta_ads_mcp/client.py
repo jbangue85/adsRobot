@@ -31,6 +31,6 @@ def get_account_currency() -> str:
     global _account_currency
     if _account_currency is None:
         account = get_ad_account()
-        account.remote_read(fields=[AdAccount.Field.currency])
+        account.api_get(fields=[AdAccount.Field.currency])
         _account_currency = account[AdAccount.Field.currency]
     return _account_currency

@@ -1,8 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Skill(update-config)",
-      "mcp__meta-ads__get_active_campaigns"
-    ]
-  }
-}

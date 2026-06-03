@@ -2,16 +2,15 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
-# Install uv
-COPY --from=ghcr.io/astral-sh/uv:latest /uv /usr/local/bin/uv
+ENV POETRY_NO_INTERACTION=1 \
+    POETRY_VIRTUALENVS_IN_PROJECT=true
 
-# Copy project files
-COPY pyproject.toml .
+RUN pip install --no-cache-dir "poetry>=2.0,<3.0"
+
+COPY pyproject.toml poetry.lock README.md .
 COPY src/ src/
 COPY scripts/ scripts/
 
-# Install dependencies (no dev deps, use system python in Docker)
-RUN uv sync --no-dev
+RUN poetry install --only main --no-ansi
 
-# Run the MCP server via stdio
-CMD ["uv", "run", "meta-ads-mcp"]
+CMD ["poetry", "run", "meta-ads-mcp"]

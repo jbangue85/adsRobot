@@ -36,7 +36,7 @@ def get_campaign(campaign_id: str) -> dict:
         Campaign.Field.bid_strategy,
     ]
     campaign = Campaign(campaign_id)
-    campaign.remote_read(fields=fields)
+    campaign.api_get(fields=fields)
     return {**dict(campaign), "currency": get_account_currency()}
 
 
