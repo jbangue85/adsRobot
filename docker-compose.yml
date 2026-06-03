@@ -5,6 +5,6 @@ services:
     env_file:
       - .env
     ports:
-      - "8000:8000"
+      - "${META_ADS_MCP_HOST_PORT:-8001}:8000"
     volumes:
       - ./campaigns:/app/campaigns
