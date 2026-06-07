@@ -46,33 +46,6 @@ def _whatsapp_call_to_action() -> dict:
     }
 
 
-def _messaging_asset_feed_spec(
-    headlines: list[str],
-    bodies: list[str],
-    descriptions: list[str],
-    *,
-    image_hash: str | None = None,
-    video_id: str | None = None,
-) -> dict:
-    ad_format = "SINGLE_VIDEO" if video_id else "SINGLE_IMAGE"
-    spec: dict = {
-        "titles": [{"text": h} for h in headlines],
-        "bodies": [{"text": b} for b in bodies],
-        "link_urls": [{"website_url": WHATSAPP_SEND_URL}],
-        "ad_formats": [ad_format],
-        "call_to_actions": [_whatsapp_call_to_action()],
-        "optimization_type": "DOF_MESSAGING_DESTINATION",
-        "additional_data": {"multi_share_end_card": False, "is_click_to_message": True},
-    }
-    if image_hash:
-        spec["images"] = [{"hash": image_hash}]
-    if video_id:
-        spec["videos"] = [{"video_id": video_id}]
-    if descriptions:
-        spec["descriptions"] = [{"text": d} for d in descriptions]
-    return spec
-
-
 def upload_image(image_path: str) -> dict:
     """
     Sube una imagen a la biblioteca de Meta y devuelve su hash.
@@ -144,7 +117,8 @@ def create_ad_creative_image(
     """
     Crea un creativo de imagen para usar en anuncios.
 
-    Acepta texto simple o listas para A/B testing automático (asset_feed_spec).
+    Acepta texto simple o listas para A/B testing automático en website.
+    Para WhatsApp usa la primera variante con link_data para mantener vista previa visible.
 
     Args:
         name: Nombre interno del creativo.
@@ -171,15 +145,18 @@ def create_ad_creative_image(
     use_feed = len(hl_list) > 1 or len(body_list) > 1 or len(desc_list) > 1
 
     if destination == "whatsapp":
+        link_data: dict = {
+            "image_hash": image_hash,
+            "link": WHATSAPP_SEND_URL,
+            "message": body_list[0],
+            "name": hl_list[0],
+            "call_to_action": _whatsapp_call_to_action(),
+        }
+        if desc_list:
+            link_data["description"] = desc_list[0]
         params: dict = {
             AdCreative.Field.name: name,
-            AdCreative.Field.object_story_spec: {"page_id": page_id},
-            "asset_feed_spec": _messaging_asset_feed_spec(
-                hl_list,
-                body_list,
-                desc_list,
-                image_hash=image_hash,
-            ),
+            AdCreative.Field.object_story_spec: {"page_id": page_id, "link_data": link_data},
         }
         if instagram_actor_id:
             params[AdCreative.Field.object_story_spec]["instagram_user_id"] = instagram_actor_id
@@ -266,7 +243,8 @@ def create_ad_creative_video(
     """
     Crea un creativo de video para usar en anuncios.
 
-    Acepta texto simple o listas para A/B testing automático (asset_feed_spec).
+    Acepta texto simple o listas para A/B testing automático en website.
+    Para WhatsApp usa la primera variante con video_data para mantener vista previa visible.
 
     Args:
         name: Nombre interno del creativo.
@@ -295,15 +273,19 @@ def create_ad_creative_video(
     call_to_action_spec = _call_to_action(call_to_action, destination, link, whatsapp_number)
 
     if destination == "whatsapp":
+        video_data: dict = {
+            "video_id": video_id,
+            "message": body_list[0],
+            "title": hl_list[0],
+            "call_to_action": _whatsapp_call_to_action(),
+        }
+        if desc_list:
+            video_data["link_description"] = desc_list[0]
+        if image_hash:
+            video_data["image_hash"] = image_hash
         params: dict = {
             AdCreative.Field.name: name,
-            AdCreative.Field.object_story_spec: {"page_id": page_id},
-            "asset_feed_spec": _messaging_asset_feed_spec(
-                hl_list,
-                body_list,
-                desc_list,
-                video_id=video_id,
-            ),
+            AdCreative.Field.object_story_spec: {"page_id": page_id, "video_data": video_data},
         }
         if instagram_actor_id:
             params[AdCreative.Field.object_story_spec]["instagram_user_id"] = instagram_actor_id

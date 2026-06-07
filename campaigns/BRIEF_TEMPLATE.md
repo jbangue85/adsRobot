@@ -22,6 +22,8 @@ Tu tarea es completar el archivo YAML de campaña con todos los textos necesario
 - `website` — El anuncio abre una landing, tienda o URL externa. Requiere `link`.
 - `whatsapp` — El anuncio abre una conversación de WhatsApp. El número se define en `ad_set.promoted_object.whatsapp_phone_number`; usa `call_to_action: WHATSAPP_MESSAGE`.
 
+Para WhatsApp con vista previa visible en Ads Manager, Meta usa la primera variante de `headline`/`body`/`description`. Si se necesitan tres variaciones reales, crear tres anuncios/creativos separados.
+
 ### Tonos disponibles
 - `URGENCY` — Escasez, tiempo limitado, ofertas
 - `SOCIAL_PROOF` — Testimoniales, números, comunidad
