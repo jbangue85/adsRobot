@@ -1,5 +1,5 @@
 from facebook_business.adobjects.adset import AdSet
-from meta_ads_mcp.client import get_ad_account
+from meta_ads_mcp.client import get_ad_account, throttle_read, throttle_write
 
 
 def list_ad_sets(campaign_id: str, limit: int = 50) -> list[dict]:
@@ -17,6 +17,7 @@ def list_ad_sets(campaign_id: str, limit: int = 50) -> list[dict]:
         AdSet.Field.start_time,
         AdSet.Field.end_time,
     ]
+    throttle_read()
     ad_sets = account.get_ad_sets(
         fields=fields,
         params={"campaign_id": campaign_id, "limit": limit},
@@ -33,6 +34,7 @@ def create_ad_set(
     optimization_goal: str = "REACH",
     bid_strategy: str | None = None,
     bid_amount: int | None = None,
+    destination_type: str | None = None,
     promoted_object: dict | None = None,
     targeting: dict | None = None,
     start_time: str | None = None,
@@ -51,6 +53,7 @@ def create_ad_set(
         optimization_goal: Objetivo de optimización (REACH, LINK_CLICKS, CONVERSIONS, etc.).
         bid_strategy: Estrategia de puja (LOWEST_COST_WITHOUT_CAP, LOWEST_COST_WITH_BID_CAP, etc.).
         bid_amount: Monto de puja en centavos (opcional).
+        destination_type: Destino del ad set (WHATSAPP, WEBSITE, etc.).
         targeting: Dict de targeting de Meta (geo_locations, age_min, age_max, etc.).
         start_time: Fecha de inicio en formato ISO 8601 (ej. "2024-01-01T00:00:00-0500").
         end_time: Fecha de fin en formato ISO 8601.
@@ -73,6 +76,8 @@ def create_ad_set(
         params["bid_strategy"] = bid_strategy
     if bid_amount is not None:
         params[AdSet.Field.bid_amount] = bid_amount
+    if destination_type is not None:
+        params[AdSet.Field.destination_type] = destination_type
     if promoted_object is not None:
         params["promoted_object"] = promoted_object
     if start_time is not None:
@@ -80,6 +85,7 @@ def create_ad_set(
     if end_time is not None:
         params[AdSet.Field.end_time] = end_time
 
+    throttle_write()
     ad_set = account.create_ad_set(fields=[AdSet.Field.id, AdSet.Field.name], params=params)
     return dict(ad_set)
 
@@ -94,6 +100,7 @@ def update_ad_set_status(ad_set_id: str, status: str) -> dict:
     """
     ad_set = AdSet(ad_set_id)
     ad_set.update({AdSet.Field.status: status})
+    throttle_write()
     ad_set.remote_update()
     return {"id": ad_set_id, "status": status, "updated": True}
 
@@ -122,5 +129,6 @@ def update_ad_set_budget(
         updates[AdSet.Field.lifetime_budget] = lifetime_budget
 
     ad_set.update(updates)
+    throttle_write()
     ad_set.remote_update()
     return {"id": ad_set_id, **updates, "updated": True}

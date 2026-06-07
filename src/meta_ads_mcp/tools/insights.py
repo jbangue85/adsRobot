@@ -1,7 +1,7 @@
 from facebook_business.adobjects.adsinsights import AdsInsights
 from facebook_business.adobjects.campaign import Campaign
 from facebook_business.adobjects.adset import AdSet
-from meta_ads_mcp.client import get_ad_account, get_account_currency
+from meta_ads_mcp.client import get_ad_account, get_account_currency, throttle_read
 
 _DEFAULT_FIELDS = [
     AdsInsights.Field.campaign_id,
@@ -40,6 +40,7 @@ def get_account_insights(
         params["time_increment"] = time_increment
 
     currency = get_account_currency()
+    throttle_read()
     insights = account.get_insights(fields=_DEFAULT_FIELDS, params=params)
     return [{**dict(i), "currency": currency} for i in insights]
 
@@ -64,6 +65,7 @@ def get_campaign_insights(
         params["time_increment"] = time_increment
 
     currency = get_account_currency()
+    throttle_read()
     insights = campaign.get_insights(fields=_DEFAULT_FIELDS, params=params)
     return [{**dict(i), "currency": currency} for i in insights]
 
@@ -92,6 +94,7 @@ def get_campaign_metrics(
         AdsInsights.Field.date_stop,
     ]
     currency = get_account_currency()
+    throttle_read()
     insights = campaign.get_insights(fields=fields, params={"date_preset": date_preset})
     return {**dict(insights[0]), "currency": currency} if insights else {}
 
@@ -111,6 +114,7 @@ def get_daily_spend(date_preset: str = "last_7d") -> list[dict]:
     ]
     params = {"date_preset": date_preset, "time_increment": 1, "level": "account"}
     currency = get_account_currency()
+    throttle_read()
     insights = account.get_insights(fields=fields, params=params)
     return [{**dict(i), "currency": currency} for i in insights]
 
@@ -135,5 +139,6 @@ def get_ad_set_insights(
         params["time_increment"] = time_increment
 
     currency = get_account_currency()
+    throttle_read()
     insights = ad_set.get_insights(fields=_DEFAULT_FIELDS, params=params)
     return [{**dict(i), "currency": currency} for i in insights]

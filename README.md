@@ -47,14 +47,63 @@ docker compose up --build
 - Crear la estructura en Meta desde el YAML en este orden: campaña, ad set, assets, creativos y anuncios.
 - Dejar campañas y anuncios en `PAUSED` salvo que se solicite activarlos explícitamente.
 
+## Rate limiting de Meta
+
+El servidor MCP incluye un limitador local de puntos para evitar exceder el rate limit de Meta Marketing API, especialmente cuando la app está en Development tier. Por defecto usa:
+
+```env
+META_API_RATE_LIMIT_ENABLED=true
+META_API_RATE_LIMIT_MAX_SCORE=60
+META_API_RATE_LIMIT_DECAY_SECONDS=300
+```
+
+El MCP cuenta cada lectura como 1 punto y cada escritura como 3 puntos. Si no hay puntos suficientes, espera antes de hacer la llamada a Meta. Para Standard tier se puede subir `META_API_RATE_LIMIT_MAX_SCORE`, pero en Raspberry Pi conviene mantener el default mientras la app esté en Development tier.
+
+## Campañas a WhatsApp
+
+Para campañas que abren WhatsApp en lugar de una landing, usar `destination: whatsapp` en los anuncios, `destination_type: WHATSAPP` en el ad set y `whatsapp_number` explícito en cada anuncio. No omitir el número: si se deja vacío, Meta puede resolverlo desde la página conectada y enviar tráfico al WhatsApp equivocado.
+
+```yaml
+campaign:
+  name: "Producto — WhatsApp"
+  objective: OUTCOME_SALES
+  daily_budget: 60000
+  status: PAUSED
+  special_ad_categories: []
+
+ad_set:
+  name: "Producto — WhatsApp — Ad Set"
+  optimization_goal: CONVERSATIONS
+  billing_event: IMPRESSIONS
+  destination_type: WHATSAPP
+  promoted_object:
+    page_id: "${META_PAGE_ID}"
+  targeting:
+    geo_locations:
+      countries: ["CO"]
+
+ads:
+  - name: "Video 01 — WhatsApp"
+    type: video
+    file: assets/videos/video1.mp4
+    headline: "Compra por WhatsApp"
+    body: "Escríbenos y te ayudamos con tu pedido."
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573161234567"
+    whatsapp_prefilled_message: "Hola, quiero más información del producto."
+```
+
 ## Configuración MCP
 
-La configuración local para Codex vive en `.codex/config.toml` y apunta a:
+La configuración para Codex vive en `.codex/config.toml` y apunta al servidor MCP desplegado en la Raspberry Pi:
 
 ```toml
 [mcp_servers.meta-ads-local]
-url = "http://localhost:8000/mcp"
+url = "http://192.168.1.100:8001/mcp"
 ```
+
+`scripts/run_mcp.py` queda como opción de desarrollo local, pero el flujo normal usa la Raspberry Pi.
 
 ## Skills de Codex
 

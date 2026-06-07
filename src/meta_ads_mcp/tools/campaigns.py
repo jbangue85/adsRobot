@@ -1,5 +1,5 @@
 from facebook_business.adobjects.campaign import Campaign
-from meta_ads_mcp.client import get_ad_account, get_account_currency
+from meta_ads_mcp.client import get_ad_account, get_account_currency, throttle_read, throttle_write
 
 
 def list_campaigns(limit: int = 50) -> list[dict]:
@@ -17,6 +17,7 @@ def list_campaigns(limit: int = 50) -> list[dict]:
         Campaign.Field.start_time,
         Campaign.Field.stop_time,
     ]
+    throttle_read()
     campaigns = account.get_campaigns(fields=fields, params={"limit": limit})
     return [{**dict(c), "currency": currency} for c in campaigns]
 
@@ -36,6 +37,7 @@ def get_campaign(campaign_id: str) -> dict:
         Campaign.Field.bid_strategy,
     ]
     campaign = Campaign(campaign_id)
+    throttle_read()
     campaign.api_get(fields=fields)
     return {**dict(campaign), "currency": get_account_currency()}
 
@@ -78,6 +80,7 @@ def create_campaign(
     if lifetime_budget is not None:
         params[Campaign.Field.lifetime_budget] = lifetime_budget
 
+    throttle_write()
     campaign = account.create_campaign(fields=[Campaign.Field.id, Campaign.Field.name], params=params)
     return dict(campaign)
 
@@ -92,6 +95,7 @@ def update_campaign_status(campaign_id: str, status: str) -> dict:
     """
     campaign = Campaign(campaign_id)
     campaign.update({Campaign.Field.status: status})
+    throttle_write()
     campaign.remote_update()
     return {"id": campaign_id, "status": status, "updated": True}
 
@@ -114,6 +118,7 @@ def get_active_campaigns() -> list[dict]:
         "filtering": [{"field": "effective_status", "operator": "IN", "value": ["ACTIVE"]}],
     }
     currency = get_account_currency()
+    throttle_read()
     campaigns = account.get_campaigns(fields=fields, params=params)
     return [{**dict(c), "currency": currency} for c in campaigns]
 
@@ -142,5 +147,6 @@ def update_campaign_budget(
         updates[Campaign.Field.lifetime_budget] = lifetime_budget
 
     campaign.update(updates)
+    throttle_write()
     campaign.remote_update()
     return {"id": campaign_id, **updates, "updated": True}

@@ -1,6 +1,6 @@
 from facebook_business.adobjects.ad import Ad
 from facebook_business.adobjects.adset import AdSet
-from meta_ads_mcp.client import get_ad_account
+from meta_ads_mcp.client import get_ad_account, throttle_read, throttle_write
 
 
 def list_ads(ad_set_id: str, limit: int = 50) -> list[dict]:
@@ -16,6 +16,7 @@ def list_ads(ad_set_id: str, limit: int = 50) -> list[dict]:
         Ad.Field.created_time,
     ]
     ad_set = AdSet(ad_set_id)
+    throttle_read()
     ads = ad_set.get_ads(fields=fields, params={"limit": limit})
     result = []
     for a in ads:
@@ -38,5 +39,6 @@ def update_ad_status(ad_id: str, status: str) -> dict:
     """
     ad = Ad(ad_id)
     ad.update({Ad.Field.status: status})
+    throttle_write()
     ad.remote_update()
     return {"id": ad_id, "status": status, "updated": True}

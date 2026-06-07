@@ -9,7 +9,9 @@ import yaml
 
 
 VALID_AD_TYPES = {"image", "video"}
-COMMON_AD_FIELDS = ("name", "type", "file", "call_to_action", "link")
+VALID_DESTINATIONS = {"website", "whatsapp"}
+WHATSAPP_AD_SET_DESTINATION_TYPES = {"WHATSAPP"}
+COMMON_AD_FIELDS = ("name", "type", "file")
 
 
 @dataclass
@@ -67,6 +69,7 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
         result.errors.append("ad_set.targeting must be a mapping")
 
     base_dir = campaign_path.parent
+    has_whatsapp_ads = False
 
     for index, ad in enumerate(ads, start=1):
         if not isinstance(ad, dict):
@@ -77,6 +80,20 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
         ad_type = ad.get("type")
         if ad_type not in VALID_AD_TYPES:
             result.errors.append(f"ads[{index}].type must be one of: image, video")
+
+        destination = str(ad.get("destination", "website")).strip().lower()
+        if destination not in VALID_DESTINATIONS:
+            result.errors.append(f"ads[{index}].destination must be one of: website, whatsapp")
+        if destination == "website":
+            _require_fields(ad, ("call_to_action", "link"), f"ads[{index}]", result)
+        if destination == "whatsapp":
+            has_whatsapp_ads = True
+            if _is_blank(ad.get("call_to_action")):
+                result.warnings.append(f"ads[{index}].call_to_action is empty; SHOP_NOW will be used")
+            elif ad.get("call_to_action") == "WHATSAPP_MESSAGE":
+                result.warnings.append(f"ads[{index}].call_to_action should usually be SHOP_NOW for click-to-message ads")
+            if _is_blank(ad.get("whatsapp_number")):
+                result.errors.append(f"ads[{index}].whatsapp_number is required for WhatsApp-only ads")
 
         asset_path = ad.get("file")
         if isinstance(asset_path, str) and asset_path.strip():
@@ -111,8 +128,22 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
                 "name": str(ad.get("name", "")),
                 "type": str(ad.get("type", "")),
                 "file": str(ad.get("file", "")),
+                "destination": destination,
             }
         )
+
+    if has_whatsapp_ads:
+        if ad_set.get("destination_type") not in WHATSAPP_AD_SET_DESTINATION_TYPES:
+            result.errors.append(
+                "ad_set.destination_type must be WHATSAPP when any ad uses destination: whatsapp"
+            )
+        promoted_object = ad_set.get("promoted_object")
+        if not isinstance(promoted_object, dict) or _is_blank(promoted_object.get("page_id")):
+            result.errors.append("ad_set.promoted_object.page_id is required for WhatsApp click-to-message ads")
+        if campaign.get("objective") not in {"OUTCOME_SALES", "OUTCOME_ENGAGEMENT", "MESSAGES"}:
+            result.warnings.append("campaign.objective is usually OUTCOME_SALES for the observed WhatsApp campaign")
+        if ad_set.get("optimization_goal") != "CONVERSATIONS":
+            result.warnings.append("ad_set.optimization_goal is usually CONVERSATIONS for WhatsApp ads")
 
     return result
 

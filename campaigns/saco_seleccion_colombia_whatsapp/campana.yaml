@@ -1,0 +1,321 @@
+# =====================================================
+# CAMPAÑA — Saco Selección Colombia tejido en hilo
+# Destino: WhatsApp / click-to-message
+# =====================================================
+
+campaign:
+  name: "Saco Selección Colombia — WhatsApp — 07 JUN"
+  objective: OUTCOME_SALES
+  bid_strategy: LOWEST_COST_WITHOUT_CAP
+  daily_budget: 30000
+  lifetime_budget: null
+  status: PAUSED
+  special_ad_categories: []
+
+ad_set:
+  name: "Saco Colombia — WhatsApp — ADSET 01"
+  optimization_goal: CONVERSATIONS
+  billing_event: IMPRESSIONS
+  bid_strategy: LOWEST_COST_WITHOUT_CAP
+  destination_type: WHATSAPP
+  start_time: "2026-06-07T05:00:00-0500"
+  end_time: null
+  status: PAUSED
+  promoted_object:
+    page_id: "${META_PAGE_ID}"
+  targeting:
+    geo_locations:
+      countries: ["CO"]
+      location_types: ["home", "recent"]
+    age_min: 18
+    age_max: 65
+    targeting_automation:
+      advantage_audience: 1
+
+ads:
+  - name: "Imagen 01 — Orgullo Colombia"
+    type: image
+    file: assets/images/imagen_01.png
+    headlines:
+      - "Saco Colombia Retro"
+      - "Apoya a Colombia con estilo"
+      - "Look colombiano diferente"
+      - "Saco tejido edición Colombia"
+      - "Pregúntanos por WhatsApp"
+    bodies:
+      - |
+        ¿Se viene partido, reunión o plan con amigos y no sabes qué ponerte? 🇨🇴⚽
+
+        El saco tejido Colombia es perfecto para apoyar a la Selección con un look diferente, cómodo y con estilo.
+
+        No necesitas usar siempre la misma camiseta de siempre. Con este saco puedes verte bien, sentirte cómodo y llevar los colores de Colombia de una forma más moderna.
+
+        ✅ Tejido en hilo
+        ✅ Diseño retro inspirado en Colombia
+        ✅ Ideal para partidos y salidas
+        ✅ Disponible para pedido por WhatsApp
+
+        Escríbenos y estrena look colombiano.
+      - |
+        🇨🇴 Para apoyar a Colombia sin verte como todos.
+
+        Este saco tejido en hilo tiene ese estilo retro que combina perfecto con jeans, tenis y planes casuales.
+
+        ✅ Cómodo para salir
+        ✅ Look diferente y llamativo
+        ✅ Colores inspirados en Colombia
+
+        Pregunta tallas y disponibilidad por WhatsApp.
+      - |
+        El partido se vive mejor cuando también tienes el look listo.
+
+        Un saco tejido en hilo, cómodo y con identidad colombiana para reuniones, salidas o planes con amigos.
+
+        Pide información por WhatsApp y separa el tuyo.
+    descriptions:
+      - "Pedido por WhatsApp"
+      - "Tejido en hilo"
+      - "Estilo Colombia"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero más información del Saco Colombia Retro tejido."
+
+  - name: "Imagen 02 — Regalo colombiano"
+    type: image
+    file: assets/images/imagen_02.png
+    headlines:
+      - "Regalo para fan de Colombia"
+      - "Saco tejido para regalar"
+      - "Detalle con orgullo"
+      - "Sorprende con Colombia"
+      - "Compra fácil por WhatsApp"
+    bodies:
+      - |
+        ¿Buscas un regalo diferente para alguien que ama a Colombia? 🇨🇴🎁
+
+        El saco Colombia tejido en hilo es una opción especial para sorprender con una prenda útil, cómoda y con mucho estilo.
+
+        Perfecto para papá, pareja, hermano, amigo o para darte un regalo a ti mismo.
+
+        ✅ Ideal para regalo
+        ✅ Diseño unisex
+        ✅ Colores inspirados en Colombia
+        ✅ Consulta tallas por WhatsApp
+
+        Escríbenos y sorprende con un regalo diferente.
+      - |
+        Un detalle que se usa, se disfruta y representa el orgullo colombiano.
+
+        Este saco tejido en hilo es perfecto para regalar porque combina comodidad, diseño y una identidad que todos reconocen.
+
+        ✅ Prenda útil
+        ✅ Look casual
+        ✅ Pedido asistido por WhatsApp
+
+        Pregunta disponibilidad y te ayudamos a elegir.
+      - |
+        Para esa persona que siempre lleva Colombia en el corazón. 🇨🇴
+
+        Un saco tejido, cómodo y diferente para usar en partidos, salidas o días frescos.
+
+        Pide más información por WhatsApp y separa el regalo.
+    descriptions:
+      - "Ideal para regalo"
+      - "Consulta por WhatsApp"
+      - "Diseño colombiano"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero regalar el Saco Colombia Retro. ¿Me das más información?"
+
+  - name: "Imagen 03 — Días frescos"
+    type: image
+    file: assets/images/imagen_03.png
+    headlines:
+      - "Para días frescos con estilo"
+      - "Cómodo, tejido y retro"
+      - "Saco en hilo para salir"
+      - "Look Colombia moderno"
+      - "Pregunta tallas por WhatsApp"
+    bodies:
+      - |
+        No es el típico saco básico que pasa desapercibido. 🔥
+
+        El saco Colombia tejido tiene ese estilo retro que llama la atención y le da más personalidad a cualquier look casual.
+
+        Ideal para quienes quieren una prenda cómoda, pero con identidad.
+
+        ✅ Diseño inspirado en Colombia
+        ✅ Estilo urbano y retro
+        ✅ Fácil de combinar
+        ✅ Pedido por WhatsApp
+
+        Si te gusta vestir diferente, este saco es para ti.
+      - |
+        Para días frescos, planes tranquilos y salidas donde quieres verte bien sin complicarte.
+
+        Este saco tejido en hilo combina comodidad con colores inspirados en Colombia.
+
+        ✅ Tejido en hilo
+        ✅ Look llamativo
+        ✅ Atención personalizada
+
+        Pregunta por WhatsApp antes de que se agoten.
+      - |
+        Cuando el clima pide abrigo ligero, este saco suma comodidad y estilo.
+
+        Una prenda diferente para llevar los colores de Colombia sin usar la camiseta de siempre.
+
+        Escríbenos por WhatsApp y te contamos cómo pedirlo.
+    descriptions:
+      - "Cómodo y tejido"
+      - "Para uso diario"
+      - "Pregunta tallas"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero saber tallas y precio del saco tejido de Colombia."
+
+  - name: "Imagen 04 — Plan de partido"
+    type: image
+    file: assets/images/imagen_04.png
+    headlines:
+      - "Listo para ver el partido"
+      - "Vive Colombia con estilo"
+      - "Saco para plan de partido"
+      - "Colombia en modo retro"
+      - "Pídelo por WhatsApp"
+    bodies:
+      - |
+        ¿Plan de partido, reunión o salida con amigos? 🇨🇴⚽
+
+        Este saco tejido Colombia es ideal para apoyar a la Selección con un look más moderno y diferente.
+
+        ✅ Diseño retro
+        ✅ Tejido en hilo
+        ✅ Cómodo para planes casuales
+        ✅ Atención por WhatsApp
+
+        Pregunta tallas y disponibilidad hoy.
+      - |
+        No necesitas una camiseta para llevar tus colores.
+
+        Este saco tejido te da un look más casual, cómodo y perfecto para compartir un plan de partido.
+
+        ✅ Estilo diferente
+        ✅ Prenda cómoda
+        ✅ Pedido por WhatsApp
+
+        Pregunta por el tuyo.
+      - |
+        Lleva el ambiente de partido en una prenda que también puedes usar después.
+
+        Saco tejido en hilo, cómodo y con colores inspirados en Colombia.
+
+        Escríbenos por WhatsApp para conocer precio y tallas.
+    descriptions:
+      - "Plan de partido"
+      - "Estilo Colombia"
+      - "Pedido directo"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero pedir el saco tejido para ver los partidos de Colombia."
+
+  - name: "Imagen 05 — Diseño tejido"
+    type: image
+    file: assets/images/imagen_05.png
+    headlines:
+      - "Tejido en hilo con estilo"
+      - "Una prenda diferente"
+      - "Saco Colombia Retro"
+      - "Diseño que llama la atención"
+      - "Escríbenos por WhatsApp"
+    bodies:
+      - |
+        Una prenda con textura, color y personalidad. 🧶
+
+        El saco Colombia tejido en hilo tiene un estilo retro que se ve diferente desde el primer vistazo.
+
+        ✅ Tejido en hilo
+        ✅ Diseño inspirado en Colombia
+        ✅ Estilo fácil de combinar
+        ✅ Consulta por WhatsApp
+
+        Pregunta por tallas y disponibilidad.
+      - |
+        Si te gustan las prendas que no se ven como todo lo demás, este saco es para ti.
+
+        Cómodo, tejido y con colores que resaltan sin perder un look casual.
+
+        ✅ Cómodo
+        ✅ Diferente
+        ✅ Pedido asistido
+
+        Escríbenos y te damos todos los detalles.
+      - |
+        Una prenda que combina identidad, comodidad y diseño tejido.
+
+        Úsala para salir, regalar o llevar tus colores con un estilo más original que la camiseta de siempre.
+
+        Haz tu consulta por WhatsApp.
+    descriptions:
+      - "Tejido en hilo"
+      - "Diseño llamativo"
+      - "Consulta fácil"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero ver más detalles del saco tejido de Colombia."
+
+  - name: "Imagen 06 — Disponibilidad"
+    type: image
+    file: assets/images/imagen_06.png
+    headlines:
+      - "Consulta disponibilidad"
+      - "Saco Colombia por WhatsApp"
+      - "Pregunta precio y tallas"
+      - "Separa el tuyo hoy"
+      - "Estrena look colombiano"
+    bodies:
+      - |
+        ¿Quieres estrenar un look colombiano diferente? 🇨🇴
+
+        Escríbenos por WhatsApp y te contamos precio, tallas y disponibilidad del saco tejido Colombia.
+
+        ✅ Atención directa
+        ✅ Consulta rápida de tallas
+        ✅ Pedido fácil
+
+        Haz clic y te ayudamos con tu pedido.
+      - |
+        Comprar es más fácil cuando puedes preguntar antes.
+
+        Te contamos tallas disponibles, precio, forma de pago y entrega por WhatsApp.
+
+        ✅ Saco tejido en hilo
+        ✅ Diseño inspirado en Colombia
+        ✅ Atención personalizada
+
+        Escríbenos ahora y separa el tuyo.
+      - |
+        Si te gustó el saco, el siguiente paso es simple: pregúntanos por WhatsApp.
+
+        Te confirmamos disponibilidad, tallas, precio y cómo hacer el pedido.
+
+        Estamos listos para ayudarte.
+    descriptions:
+      - "Precio y tallas"
+      - "Atención directa"
+      - "Pedido por WhatsApp"
+    destination: whatsapp
+    call_to_action: SHOP_NOW
+    whatsapp_number: "+573160432125"
+    status: PAUSED
+    whatsapp_prefilled_message: "Hola, quiero consultar disponibilidad del saco tejido de Colombia."
