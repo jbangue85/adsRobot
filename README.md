@@ -61,7 +61,7 @@ El MCP cuenta cada lectura como 1 punto y cada escritura como 3 puntos. Si no ha
 
 ## Campañas a WhatsApp
 
-Para campañas que abren WhatsApp en lugar de una landing, usar `destination: whatsapp` en los anuncios, `destination_type: WHATSAPP` en el ad set y `whatsapp_number` explícito en cada anuncio. No omitir el número: si se deja vacío, Meta puede resolverlo desde la página conectada y enviar tráfico al WhatsApp equivocado.
+Para campañas que abren WhatsApp en lugar de una landing, usar `destination_type: WHATSAPP` en el ad set y poner el número en `ad_set.promoted_object.whatsapp_phone_number`. Meta decide el destino desde el conjunto de anuncios, no desde el creativo. No omitir ese campo: si solo se envía `page_id`, Meta puede resolver el WhatsApp conectado a la página y enviar tráfico al número equivocado.
 
 ```yaml
 campaign:
@@ -78,6 +78,7 @@ ad_set:
   destination_type: WHATSAPP
   promoted_object:
     page_id: "${META_PAGE_ID}"
+    whatsapp_phone_number: "573161234567"
   targeting:
     geo_locations:
       countries: ["CO"]
@@ -90,7 +91,6 @@ ads:
     body: "Escríbenos y te ayudamos con tu pedido."
     destination: whatsapp
     call_to_action: SHOP_NOW
-    whatsapp_number: "+573161234567"
     whatsapp_prefilled_message: "Hola, quiero más información del producto."
 ```
 

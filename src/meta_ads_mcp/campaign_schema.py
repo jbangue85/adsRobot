@@ -92,8 +92,6 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
                 result.warnings.append(f"ads[{index}].call_to_action is empty; SHOP_NOW will be used")
             elif ad.get("call_to_action") == "WHATSAPP_MESSAGE":
                 result.warnings.append(f"ads[{index}].call_to_action should usually be SHOP_NOW for click-to-message ads")
-            if _is_blank(ad.get("whatsapp_number")):
-                result.errors.append(f"ads[{index}].whatsapp_number is required for WhatsApp-only ads")
 
         asset_path = ad.get("file")
         if isinstance(asset_path, str) and asset_path.strip():
@@ -140,6 +138,10 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
         promoted_object = ad_set.get("promoted_object")
         if not isinstance(promoted_object, dict) or _is_blank(promoted_object.get("page_id")):
             result.errors.append("ad_set.promoted_object.page_id is required for WhatsApp click-to-message ads")
+        if not isinstance(promoted_object, dict) or _is_blank(promoted_object.get("whatsapp_phone_number")):
+            result.errors.append(
+                "ad_set.promoted_object.whatsapp_phone_number is required for WhatsApp click-to-message ads"
+            )
         if campaign.get("objective") not in {"OUTCOME_SALES", "OUTCOME_ENGAGEMENT", "MESSAGES"}:
             result.warnings.append("campaign.objective is usually OUTCOME_SALES for the observed WhatsApp campaign")
         if ad_set.get("optimization_goal") != "CONVERSATIONS":

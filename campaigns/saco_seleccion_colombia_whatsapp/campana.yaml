@@ -23,6 +23,7 @@ ad_set:
   status: PAUSED
   promoted_object:
     page_id: "${META_PAGE_ID}"
+    whatsapp_phone_number: "573160432125"
   targeting:
     geo_locations:
       countries: ["CO"]

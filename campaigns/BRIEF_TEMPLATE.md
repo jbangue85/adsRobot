@@ -20,7 +20,7 @@ Tu tarea es completar el archivo YAML de campaña con todos los textos necesario
 
 ### Destinos disponibles
 - `website` — El anuncio abre una landing, tienda o URL externa. Requiere `link`.
-- `whatsapp` — El anuncio abre una conversación de WhatsApp. Usa normalmente `call_to_action: SHOP_NOW`; requiere `whatsapp_number`.
+- `whatsapp` — El anuncio abre una conversación de WhatsApp. El número se define en `ad_set.promoted_object.whatsapp_phone_number`; usa normalmente `call_to_action: SHOP_NOW`.
 
 ### Tonos disponibles
 - `URGENCY` — Escasez, tiempo limitado, ofertas
@@ -52,6 +52,9 @@ campaign:
 
 ad_set:
   name: ""              # ← FILL: nombre descriptivo del ad set
+  promoted_object:
+    page_id: "${META_PAGE_ID}"
+    whatsapp_phone_number: "" # requerido si hay anuncios destination=whatsapp, sin +
   targeting: {}         # ya definido por el cliente
 
 ads:
@@ -65,7 +68,6 @@ ads:
     destination: website # website | whatsapp
     call_to_action: ""  # ← FILL (ver lista arriba)
     link: ""            # ← FILL si destination=website. Opcional para WhatsApp.
-    whatsapp_number: "" # requerido si destination=whatsapp
     whatsapp_prefilled_message: "" # opcional si destination=whatsapp
     tone: ""            # ← FILL: tono elegido (ver lista arriba)
     notes: ""           # ← FILL opcional: notas de contexto
