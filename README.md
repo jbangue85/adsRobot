@@ -63,7 +63,7 @@ El MCP cuenta cada lectura como 1 punto y cada escritura como 3 puntos. Si no ha
 
 Para campañas que abren WhatsApp en lugar de una landing, usar `destination_type: WHATSAPP` en el ad set y poner el número en `ad_set.promoted_object.whatsapp_phone_number`. Meta decide el destino desde el conjunto de anuncios, no desde el creativo. No omitir ese campo: si solo se envía `page_id`, Meta puede resolver el WhatsApp conectado a la página y enviar tráfico al número equivocado.
 
-Si el anuncio de WhatsApp trae varias opciones de `headlines`, `bodies` o `descriptions`, el MCP crea un solo creativo con `asset_feed_spec` para que Meta reciba varias variaciones dentro del mismo anuncio. Si trae una sola variante, usa `object_story_spec.link_data`.
+Para que Ads Manager muestre vista previa con imagen, los creativos WhatsApp se crean con `object_story_spec.link_data` y `WHATSAPP_MESSAGE`. Si el YAML trae varias opciones de `headlines`, `bodies` o `descriptions`, el MCP usa la primera variante para WhatsApp.
 
 ```yaml
 campaign:
