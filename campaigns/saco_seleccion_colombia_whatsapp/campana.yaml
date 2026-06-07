@@ -78,8 +78,7 @@ ads:
       - "Tejido en hilo"
       - "Estilo Colombia"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero más información del Saco Colombia Retro tejido."
 
@@ -127,8 +126,7 @@ ads:
       - "Consulta por WhatsApp"
       - "Diseño colombiano"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero regalar el Saco Colombia Retro. ¿Me das más información?"
 
@@ -176,8 +174,7 @@ ads:
       - "Para uso diario"
       - "Pregunta tallas"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero saber tallas y precio del saco tejido de Colombia."
 
@@ -223,8 +220,7 @@ ads:
       - "Estilo Colombia"
       - "Pedido directo"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero pedir el saco tejido para ver los partidos de Colombia."
 
@@ -270,8 +266,7 @@ ads:
       - "Diseño llamativo"
       - "Consulta fácil"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero ver más detalles del saco tejido de Colombia."
 
@@ -316,7 +311,6 @@ ads:
       - "Atención directa"
       - "Pedido por WhatsApp"
     destination: whatsapp
-    call_to_action: SHOP_NOW
-    whatsapp_number: "+573160432125"
+    call_to_action: WHATSAPP_MESSAGE
     status: PAUSED
     whatsapp_prefilled_message: "Hola, quiero consultar disponibilidad del saco tejido de Colombia."

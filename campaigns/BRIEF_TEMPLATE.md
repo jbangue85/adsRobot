@@ -20,7 +20,7 @@ Tu tarea es completar el archivo YAML de campaña con todos los textos necesario
 
 ### Destinos disponibles
 - `website` — El anuncio abre una landing, tienda o URL externa. Requiere `link`.
-- `whatsapp` — El anuncio abre una conversación de WhatsApp. El número se define en `ad_set.promoted_object.whatsapp_phone_number`; usa normalmente `call_to_action: SHOP_NOW`.
+- `whatsapp` — El anuncio abre una conversación de WhatsApp. El número se define en `ad_set.promoted_object.whatsapp_phone_number`; usa `call_to_action: WHATSAPP_MESSAGE`.
 
 ### Tonos disponibles
 - `URGENCY` — Escasez, tiempo limitado, ofertas

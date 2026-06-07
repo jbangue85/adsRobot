@@ -1,5 +1,4 @@
 import os
-import json
 from facebook_business.adobjects.adcreative import AdCreative
 from facebook_business.adobjects.advideo import AdVideo
 from facebook_business.adobjects.adimage import AdImage
@@ -8,7 +7,6 @@ from facebook_business.adobjects.adset import AdSet
 from meta_ads_mcp.client import get_ad_account, throttle_write
 
 WHATSAPP_SEND_URL = "https://api.whatsapp.com/send"
-DEFAULT_WHATSAPP_MESSAGE = "¡Hola! Quiero más información."
 
 
 def _normalize_destination(destination: str | None) -> str:
@@ -41,41 +39,38 @@ def _call_to_action(
     return {"type": cta_type}
 
 
-def _messaging_asset_feed_spec(call_to_action: str | None, whatsapp_number: str | None = None) -> dict:
-    cta_type = call_to_action or "SHOP_NOW"
-    whatsapp_value = {"app_destination": "WHATSAPP", "link": WHATSAPP_SEND_URL}
-    if whatsapp_number:
-        whatsapp_value["whatsapp_number"] = whatsapp_number
+def _whatsapp_call_to_action() -> dict:
     return {
-        "call_to_actions": [
-            {"type": cta_type, "value": whatsapp_value},
-        ],
-        "additional_data": {"multi_share_end_card": False, "is_click_to_message": True},
+        "type": "WHATSAPP_MESSAGE",
+        "value": {"app_destination": "WHATSAPP", "link": WHATSAPP_SEND_URL},
     }
 
 
-def _page_welcome_message(prefilled_message: str | None) -> str:
-    message = prefilled_message or DEFAULT_WHATSAPP_MESSAGE
-    stripped = message.strip()
-    if stripped.startswith("{"):
-        return stripped
-    return json.dumps(
-        {
-            "type": "VISUAL_EDITOR",
-            "version": 2,
-            "landing_screen_type": "welcome_message",
-            "media_type": "text",
-            "text_format": {
-                "customer_action_type": "autofill_message",
-                "message": {
-                    "autofill_message": {"content": message},
-                    "text": "¡Hola! ¿Cómo podemos ayudarte?",
-                },
-            },
-            "surface": "visual_editor_new",
-        },
-        ensure_ascii=False,
-    )
+def _messaging_asset_feed_spec(
+    headlines: list[str],
+    bodies: list[str],
+    descriptions: list[str],
+    *,
+    image_hash: str | None = None,
+    video_id: str | None = None,
+) -> dict:
+    ad_format = "SINGLE_VIDEO" if video_id else "SINGLE_IMAGE"
+    spec: dict = {
+        "titles": [{"text": h} for h in headlines],
+        "bodies": [{"text": b} for b in bodies],
+        "link_urls": [{"website_url": WHATSAPP_SEND_URL}],
+        "ad_formats": [ad_format],
+        "call_to_actions": [_whatsapp_call_to_action()],
+        "optimization_type": "DOF_MESSAGING_DESTINATION",
+        "additional_data": {"multi_share_end_card": False, "is_click_to_message": True},
+    }
+    if image_hash:
+        spec["images"] = [{"hash": image_hash}]
+    if video_id:
+        spec["videos"] = [{"video_id": video_id}]
+    if descriptions:
+        spec["descriptions"] = [{"text": d} for d in descriptions]
+    return spec
 
 
 def upload_image(image_path: str) -> dict:
@@ -169,15 +164,26 @@ def create_ad_creative_image(
     page_id = page_id or os.environ.get("META_PAGE_ID", "")
     destination = _normalize_destination(destination)
     link = _destination_link(link, destination)
-    if destination == "whatsapp" and call_to_action in (None, "WHATSAPP_MESSAGE"):
-        call_to_action = "SHOP_NOW"
 
     hl_list = [headlines] if isinstance(headlines, str) else headlines
     body_list = [bodies] if isinstance(bodies, str) else bodies
     desc_list = ([descriptions] if isinstance(descriptions, str) else descriptions) if descriptions else []
     use_feed = len(hl_list) > 1 or len(body_list) > 1 or len(desc_list) > 1
 
-    if use_feed:
+    if destination == "whatsapp":
+        params: dict = {
+            AdCreative.Field.name: name,
+            AdCreative.Field.object_story_spec: {"page_id": page_id},
+            "asset_feed_spec": _messaging_asset_feed_spec(
+                hl_list,
+                body_list,
+                desc_list,
+                image_hash=image_hash,
+            ),
+        }
+        if instagram_actor_id:
+            params[AdCreative.Field.object_story_spec]["instagram_user_id"] = instagram_actor_id
+    elif use_feed:
         object_story_spec: dict = {
             "page_id": page_id,
             "link_data": {
@@ -188,8 +194,6 @@ def create_ad_creative_image(
                 "call_to_action": _call_to_action(call_to_action, destination, link, whatsapp_number),
             },
         }
-        if destination == "whatsapp":
-            object_story_spec["link_data"]["page_welcome_message"] = _page_welcome_message(whatsapp_prefilled_message)
         if desc_list:
             object_story_spec["link_data"]["description"] = desc_list[0]
         if instagram_actor_id:
@@ -202,10 +206,7 @@ def create_ad_creative_image(
             "link_urls": [{"website_url": link}],
             "ad_formats": ["SINGLE_IMAGE"],
         }
-        if destination == "whatsapp":
-            asset_feed_spec.update(_messaging_asset_feed_spec(call_to_action, whatsapp_number))
-        else:
-            asset_feed_spec["call_to_action_types"] = [call_to_action]
+        asset_feed_spec["call_to_action_types"] = [call_to_action]
         if desc_list:
             asset_feed_spec["descriptions"] = [{"text": d} for d in desc_list]
 
@@ -230,8 +231,6 @@ def create_ad_creative_image(
                 "call_to_action": _call_to_action(call_to_action, destination, link, whatsapp_number),
             },
         }
-        if destination == "whatsapp":
-            object_story_spec["link_data"]["page_welcome_message"] = _page_welcome_message(whatsapp_prefilled_message)
         if desc_list:
             object_story_spec["link_data"]["description"] = desc_list[0]
         if instagram_actor_id:
@@ -240,8 +239,6 @@ def create_ad_creative_image(
             AdCreative.Field.name: name,
             AdCreative.Field.object_story_spec: object_story_spec,
         }
-        if destination == "whatsapp":
-            params["asset_feed_spec"] = _messaging_asset_feed_spec(call_to_action, whatsapp_number)
 
     throttle_write()
     creative = account.create_ad_creative(
@@ -290,8 +287,6 @@ def create_ad_creative_video(
     page_id = page_id or os.environ.get("META_PAGE_ID", "")
     destination = _normalize_destination(destination)
     link = _destination_link(link, destination)
-    if destination == "whatsapp" and call_to_action in (None, "WHATSAPP_MESSAGE"):
-        call_to_action = "SHOP_NOW"
 
     hl_list = [headlines] if isinstance(headlines, str) else headlines
     body_list = [bodies] if isinstance(bodies, str) else bodies
@@ -299,7 +294,20 @@ def create_ad_creative_video(
     use_feed = len(hl_list) > 1 or len(body_list) > 1 or len(desc_list) > 1
     call_to_action_spec = _call_to_action(call_to_action, destination, link, whatsapp_number)
 
-    if use_feed:
+    if destination == "whatsapp":
+        params: dict = {
+            AdCreative.Field.name: name,
+            AdCreative.Field.object_story_spec: {"page_id": page_id},
+            "asset_feed_spec": _messaging_asset_feed_spec(
+                hl_list,
+                body_list,
+                desc_list,
+                video_id=video_id,
+            ),
+        }
+        if instagram_actor_id:
+            params[AdCreative.Field.object_story_spec]["instagram_user_id"] = instagram_actor_id
+    elif use_feed:
         # object_story_spec provides the base (page, video, link, CTA)
         # asset_feed_spec with optimization_type DEGREES_OF_FREEDOM provides multiple text options
         video_data_feed: dict = {
@@ -308,8 +316,6 @@ def create_ad_creative_video(
             "title": hl_list[0],
             "call_to_action": call_to_action_spec,
         }
-        if destination == "whatsapp":
-            video_data_feed["page_welcome_message"] = _page_welcome_message(whatsapp_prefilled_message)
         if image_hash:
             video_data_feed["image_hash"] = image_hash
         if desc_list:
@@ -324,8 +330,6 @@ def create_ad_creative_video(
             "bodies": [{"text": b} for b in body_list],
             "optimization_type": "DEGREES_OF_FREEDOM",
         }
-        if destination == "whatsapp":
-            asset_feed_spec.update(_messaging_asset_feed_spec(call_to_action, whatsapp_number))
         if desc_list:
             asset_feed_spec["descriptions"] = [{"text": d} for d in desc_list]
 
@@ -341,8 +345,6 @@ def create_ad_creative_video(
             "title": hl_list[0],
             "call_to_action": call_to_action_spec,
         }
-        if destination == "whatsapp":
-            video_data["page_welcome_message"] = _page_welcome_message(whatsapp_prefilled_message)
         if desc_list:
             video_data["link_description"] = desc_list[0]
         if image_hash:
@@ -359,8 +361,6 @@ def create_ad_creative_video(
             AdCreative.Field.name: name,
             AdCreative.Field.object_story_spec: object_story_spec,
         }
-        if destination == "whatsapp":
-            params["asset_feed_spec"] = _messaging_asset_feed_spec(call_to_action, whatsapp_number)
 
     throttle_write()
     creative = account.create_ad_creative(

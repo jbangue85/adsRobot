@@ -90,7 +90,7 @@ ads:
     headline: "Compra por WhatsApp"
     body: "Escríbenos y te ayudamos con tu pedido."
     destination: whatsapp
-    call_to_action: SHOP_NOW
+    call_to_action: WHATSAPP_MESSAGE
     whatsapp_prefilled_message: "Hola, quiero más información del producto."
 ```
 

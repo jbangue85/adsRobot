@@ -89,9 +89,11 @@ def validate_campaign_data(data: dict[str, Any], campaign_path: Path) -> Validat
         if destination == "whatsapp":
             has_whatsapp_ads = True
             if _is_blank(ad.get("call_to_action")):
-                result.warnings.append(f"ads[{index}].call_to_action is empty; SHOP_NOW will be used")
-            elif ad.get("call_to_action") == "WHATSAPP_MESSAGE":
-                result.warnings.append(f"ads[{index}].call_to_action should usually be SHOP_NOW for click-to-message ads")
+                result.warnings.append(f"ads[{index}].call_to_action is empty; WHATSAPP_MESSAGE will be used")
+            elif ad.get("call_to_action") != "WHATSAPP_MESSAGE":
+                result.warnings.append(
+                    f"ads[{index}].call_to_action should be WHATSAPP_MESSAGE for click-to-WhatsApp ads"
+                )
 
         asset_path = ad.get("file")
         if isinstance(asset_path, str) and asset_path.strip():
